@@ -33,7 +33,6 @@
             transition: all 0.3s ease;
         }
 
-        /* Header & Nav */
         header {
             background-color: var(--header-bg);
             color: white;
@@ -55,7 +54,6 @@
             font-weight: bold;
             transition: 0.3s;
         }
-        .theme-toggle:hover { background: #555; }
 
         nav {
             display: flex;
@@ -75,7 +73,6 @@
         }
         nav a:hover { background-color: var(--header-bg); }
 
-        /* Container & Cards */
         .container { max-width: 1000px; margin: 30px auto; padding: 0 20px; }
         
         .card {
@@ -86,7 +83,6 @@
             margin-bottom: 25px;
         }
 
-        /* Skills/Topics Grid */
         .skills-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -102,7 +98,6 @@
             text-align: center;
         }
 
-        /* Form */
         input, textarea {
             width: 100%;
             padding: 12px;
@@ -124,9 +119,6 @@
             text-decoration: none;
             display: inline-block;
             margin-top: 10px;
-        }
-        button[type="submit"]:hover, .btn-subscribe:hover {
-            background-color: var(--accent);
         }
 
         footer {
@@ -151,7 +143,7 @@
         <a href="#live">🔴 Live Stream</a>
         <a href="#about">About</a>
         <a href="#topics">Topics</a>
-        <a href="#videos">Videos</a>
+        <a href="#videos">My Videos</a>
         <a href="#contact">Contact</a>
     </nav>
 
@@ -172,54 +164,50 @@
             </div>
         </div>
 
-        <div id="live" class="card" style="border: 2px solid #ff0000; position: relative;">
+        <div id="live" class="card" style="border: 2px solid #ff0000;">
             <h2 style="color: #ff0000;">🔴 Live Now</h2>
-            <p>Agar main YouTube par live hoon, toh aap mujhe yahan direct dekh sakte hain!</p>
             <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 8px;">
-                <iframe 
-                    src="https://www.youtube.com/embed/live_stream?channel=UCRfvXfU4toossqCIbuXNblA" 
-                    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;" 
-                    allowfullscreen>
-                </iframe>
+                <iframe src="https://www.youtube.com/embed/live_stream?channel=UCRfvXfU4toossqCIbuXNblA" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;" allowfullscreen></iframe>
             </div>
         </div>
-       <div id="all-videos" class="card">
-            <h2>📚 My Complete Video Library</h2>
-            <p>Bina YouTube par jaye, mere channel ki saari videos yahan ek sath dekhein!</p>
-            <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 8px;">
-                <iframe 
-                    src="https://www.youtube.com/embed/videoseries?list=UURfvXfU4toossqCIbuXNblA" 
-                    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;" 
-                    allowfullscreen>
-                </iframe>
-            </div>
+
+        <div id="videos" class="card">
+            <h2>🎥 Latest Uploads</h2>
+            <p>Automatic updates from my videos.js file.</p>
+            <div id="video-gallery" class="skills-grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
+                </div>
         </div>
 
         <div id="contact" class="card">
             <h2>Business & Sponsorship Inquiries</h2>
             <form action="https://formspree.io/f/YOUR_FORMSPREE_ID" method="POST">
-                <label>Name / Company:</label>
-                <input type="text" name="name" required>
-                
-                <label>Email:</label>
-                <input type="email" name="email" required>
-                
-                <label>Message:</label>
-                <textarea name="message" rows="5" required></textarea>
-                
+                <input type="text" name="name" placeholder="Name / Company" required>
+                <input type="email" name="email" placeholder="Email" required>
+                <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
                 <button type="submit">Send Message</button>
             </form>
         </div>
-
     </div>
 
     <footer>
         <p>&copy; 2026 Asif Tech Global Official. Designed for the Tech Community.</p>
     </footer>
 
+    <script src="videos.js"></script>
     <script>
         function toggleTheme() {
             document.body.classList.toggle('dark-mode');
+        }
+
+        // Logic to load videos from videos.js
+        const gallery = document.getElementById('video-gallery');
+        if (typeof myVideos !== 'undefined') {
+            myVideos.forEach(id => {
+                gallery.innerHTML += `
+                    <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 8px; background:#000; margin-bottom:10px;">
+                        <iframe src="https://www.youtube.com/embed/${id}" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;" allowfullscreen></iframe>
+                    </div>`;
+            });
         }
     </script>
 </body>
