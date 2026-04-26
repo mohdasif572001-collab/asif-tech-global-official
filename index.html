@@ -85,10 +85,19 @@
 
         .skills-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 15px;
+        }
+
+        /* Specific grid for Shorts (smaller) */
+        .shorts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
             gap: 15px;
             margin-top: 15px;
         }
+
         .skill-box {
             background: var(--bg-color);
             border-left: 4px solid var(--header-bg);
@@ -96,29 +105,6 @@
             border-radius: 5px;
             font-weight: bold;
             text-align: center;
-        }
-
-        input, textarea {
-            width: 100%;
-            padding: 12px;
-            margin: 10px 0;
-            border: 1px solid #555;
-            border-radius: 5px;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-        }
-        button[type="submit"], .btn-subscribe {
-            background-color: var(--header-bg);
-            color: white;
-            border: none;
-            padding: 12px 25px;
-            cursor: pointer;
-            border-radius: 5px;
-            font-size: 16px;
-            font-weight: bold;
-            text-decoration: none;
-            display: inline-block;
-            margin-top: 10px;
         }
 
         footer {
@@ -140,59 +126,53 @@
     </header>
 
     <nav>
-        <a href="#live">🔴 Live Stream</a>
         <a href="#about">About</a>
-        <a href="#topics">Topics</a>
-        <a href="#videos">My Videos</a>
-        <a href="#contact">Contact</a>
+        <a href="#tutorials">Tutorials</a>
+        <a href="#shorts">Shorts</a>
+        <a href="#playlists">Playlists</a>
     </nav>
 
     <div class="container">
         
         <div id="about" class="card">
             <h2>About the Channel</h2>
-            <p>Welcome! Yahan hum high-quality long-form videos banate hain. Agar aap tech enthusiast hain ya apni technical skills ko next level par le jana chahte hain, toh aap sahi jagah par hain.</p>
+            <p>Welcome! Yahan hum high-quality long-form videos banate hain.</p>
         </div>
 
-        <div id="topics" class="card">
-            <h2>What We Cover</h2>
-            <div class="skills-grid">
-                <div class="skill-box">🐍 Python & C# Scripting</div>
-                <div class="skill-box">⚙️ PowerShell Automation</div>
-                <div class="skill-box">💻 Advanced PC Optimization</div>
-                <div class="skill-box">📈 YouTube SEO Mastery</div>
-            </div>
+        <div id="tutorials" class="card">
+            <h2 style="color: #ff0000;">💻 Latest Tutorials</h2>
+            <div id="tutorial-grid" class="skills-grid"></div>
         </div>
 
-        <div id="live" class="card" style="border: 2px solid #ff0000;">
-            <h2 style="color: #ff0000;">🔴 Live Now</h2>
-            <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 8px;">
-                <iframe src="https://www.youtube.com/embed/live_stream?channel=UCRfvXfU4toossqCIbuXNblA" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;" allowfullscreen></iframe>
-            </div>
+        <div id="shorts" class="card">
+            <h2 style="color: #ff0000;">📱 Tech Shorts</h2>
+            <div id="shorts-grid" class="shorts-grid"></div>
         </div>
 
-        <div id="videos" class="card">
-            <h2>🎥 Latest Uploads</h2>
-            <p>Automatic updates from my videos.js file.</p>
-            <div id="video-gallery" class="skills-grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
-                </div>
+        <div id="playlists" class="card">
+            <h2 style="color: #ff0000;">📂 Playlists</h2>
+            <div id="playlist-grid" class="skills-grid"></div>
         </div>
 
-         <script src="videos.js"></script>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Asif Tech Global Official. Designed for the Tech Community.</p>
+    </footer>
+
+    <script src="videos.js"></script>
     <script>
         function toggleTheme() {
             document.body.classList.toggle('dark-mode');
         }
 
-        // Videos load karne ka sahi logic
         function createVideoHTML(id) {
             return `
-                <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 8px; background:#000; margin-bottom:15px; border: 1px solid #444;">
+                <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 8px; background:#000; border: 1px solid #444;">
                     <iframe src="https://www.youtube.com/embed/${id}" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;" allowfullscreen></iframe>
                 </div>`;
         }
 
-        // myContent check kar rahe hain kyunki videos.js mein yahi naam hai
         if (typeof myContent !== 'undefined') {
             const tutGrid = document.getElementById('tutorial-grid');
             const shortGrid = document.getElementById('shorts-grid');
@@ -203,7 +183,7 @@
             if(playGrid) {
                 myContent.playlists.forEach(id => {
                     playGrid.innerHTML += `
-                    <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 8px; border: 2px solid #ff0000; margin-bottom:15px;">
+                    <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 8px; border: 2px solid #ff0000;">
                         <iframe src="https://www.youtube.com/embed/videoseries?list=${id}" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;" allowfullscreen></iframe>
                     </div>`;
                 });
