@@ -8,6 +8,17 @@
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* 🎛️ Filter Buttons Design */
+        .filter-menu { text-align: center; margin-bottom: 30px; display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
+        .filter-btn { background: #f1f5f9; border: 2px solid transparent; color: #334155; padding: 10px 25px; border-radius: 50px; cursor: pointer; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 14px; transition: 0.3s; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
+        .filter-btn:hover { transform: translateY(-3px); box-shadow: 0 6px 12px rgba(0,0,0,0.1); }
+        .filter-btn.active { background: #00c853; color: white; border-color: #00c853; box-shadow: 0 6px 15px rgba(0, 200, 83, 0.3); }
+        
+        /* Dark Mode support for buttons */
+        .dark-theme .filter-btn { background: #1e293b; color: #cbd5e1; border: 1px solid #334155; }
+        .dark-theme .filter-btn.active { background: #00ffcc; color: #000; border-color: #00ffcc; box-shadow: 0 0 15px rgba(0, 255, 204, 0.4); }
+    </style>
 </head>
 <body>
 
@@ -15,37 +26,47 @@
         <div class="logo"><strong>ASIF TECH</strong> GLOBAL</div>
         <div class="nav-links">
             <a href="index.html">Home</a>
-            <a href="library.html" style="color: #00c853; border-bottom: 2px solid #00c853;">Library</a> </div>
+            <a href="library.html" style="color: #00c853; border-bottom: 2px solid #00c853;">Library</a>
+        </div>
     </nav>
 
     <div class="container" style="max-width: 1200px; margin: auto; padding: 20px; margin-top: 20px;">
         
         <div id="downloads" style="background: white; padding: 30px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); border-left: 5px solid #00c853;">
-            <h2 style="text-align: center; color: #1b5e20; margin-bottom: 40px;"><i class="fas fa-folder-open"></i> Premium Resource Library</h2>
+            <h2 style="text-align: center; color: #1b5e20; margin-bottom: 20px;"><i class="fas fa-folder-open"></i> Premium Resource Library</h2>
             
-            <div style="margin-bottom: 40px; padding: 20px; border: 1px solid #b2dfdb; border-radius: 15px; background: #f0fbf9;">
+            <div class="filter-menu">
+                <button class="filter-btn active" onclick="filterSelection('all', this)"><i class="fas fa-th-large"></i> All Files</button>
+                <button class="filter-btn" onclick="filterSelection('images', this)"><i class="fas fa-images"></i> Photos</button>
+                <button class="filter-btn" onclick="filterSelection('pdfs', this)"><i class="fas fa-file-pdf"></i> PDFs</button>
+                <button class="filter-btn" onclick="filterSelection('ppts', this)"><i class="fas fa-file-powerpoint"></i> PPTs</button>
+                <button class="filter-btn" onclick="filterSelection('codes', this)"><i class="fas fa-code"></i> Source Code</button>
+                <button class="filter-btn" onclick="filterSelection('others', this)"><i class="fas fa-file-archive"></i> Others</button>
+            </div>
+
+            <div id="sec-codes" class="resource-section" style="margin-bottom: 40px; padding: 20px; border: 1px solid #b2dfdb; border-radius: 15px; background: #f0fbf9;">
                 <h3 style="color: #00796b; margin-top: 0;"><i class="fas fa-code"></i> Source Code & Scripts</h3>
-                <div id="code-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-top: 15px;"></div>
+                <div id="code-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 15px; margin-top: 15px;"></div>
             </div>
 
-            <div style="margin-bottom: 40px; padding: 20px; border: 1px solid #ffcdd2; border-radius: 15px; background: #fffafb;">
+            <div id="sec-pdfs" class="resource-section" style="margin-bottom: 40px; padding: 20px; border: 1px solid #ffcdd2; border-radius: 15px; background: #fffafb;">
                 <h3 style="color: #d32f2f; margin-top: 0;"><i class="fas fa-file-pdf"></i> PDF Documents & Notes</h3>
-                <div id="pdf-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-top: 15px;"></div>
+                <div id="pdf-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 15px; margin-top: 15px;"></div>
             </div>
 
-            <div style="margin-bottom: 40px; padding: 20px; border: 1px solid #ffe0b2; border-radius: 15px; background: #fffcf8;">
+            <div id="sec-ppts" class="resource-section" style="margin-bottom: 40px; padding: 20px; border: 1px solid #ffe0b2; border-radius: 15px; background: #fffcf8;">
                 <h3 style="color: #f57c00; margin-top: 0;"><i class="fas fa-file-powerpoint"></i> Presentations (PPT)</h3>
-                <div id="ppt-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-top: 15px;"></div>
+                <div id="ppt-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 15px; margin-top: 15px;"></div>
             </div>
 
-            <div style="margin-bottom: 40px; padding: 20px; border: 1px solid #bbdefb; border-radius: 15px; background: #f8fbff;">
+            <div id="sec-images" class="resource-section" style="margin-bottom: 40px; padding: 20px; border: 1px solid #bbdefb; border-radius: 15px; background: #f8fbff;">
                 <h3 style="color: #1976d2; margin-top: 0;"><i class="fas fa-images"></i> Image Gallery</h3>
-                <div id="image-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-top: 15px;"></div>
+                <div id="image-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 15px; margin-top: 15px;"></div>
             </div>
 
-            <div style="padding: 20px; border: 1px solid #cfd8dc; border-radius: 15px; background: #fbfcfc;">
+            <div id="sec-others" class="resource-section" style="padding: 20px; border: 1px solid #cfd8dc; border-radius: 15px; background: #fbfcfc;">
                 <h3 style="color: #455a64; margin-top: 0;"><i class="fas fa-file-archive"></i> Other Files</h3>
-                <div id="other-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-top: 15px;"></div>
+                <div id="other-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 15px; margin-top: 15px;"></div>
             </div>
             
         </div>
@@ -53,6 +74,33 @@
 
     <script src="videos.js"></script>
     <script>
+        // 🎛️ Filter Logic (Hide/Show Sections)
+        function filterSelection(category, btnElement) {
+            // Remove 'active' class from all buttons
+            var buttons = document.getElementsByClassName("filter-btn");
+            for (var i = 0; i < buttons.length; i++) {
+                buttons[i].classList.remove("active");
+            }
+            // Add 'active' class to clicked button
+            btnElement.classList.add("active");
+
+            // Get all sections
+            var sections = ['codes', 'pdfs', 'ppts', 'images', 'others'];
+            
+            // Loop through sections and hide/show
+            sections.forEach(function(sec) {
+                var element = document.getElementById("sec-" + sec);
+                if (element) {
+                    if (category === 'all' || category === sec) {
+                        element.style.display = "block";
+                    } else {
+                        element.style.display = "none";
+                    }
+                }
+            });
+        }
+
+        // 🗂️ Load Data from videos.js
         window.onload = function() {
             if (typeof myContent !== 'undefined') {
                 const grids = {
@@ -67,20 +115,19 @@
                     const grid = document.getElementById(grids[type].id);
                     if (grid && myContent[type]) {
                         myContent[type].forEach(item => {
-                            // Agar image hai toh preview dikhaye, nahi toh normal dabba
                             if (type === 'images') {
                                 grid.innerHTML += `
-                                    <div style="border: 1px solid #e3f2fd; padding: 15px; border-radius: 15px; text-align: center; background: #fafafa;">
-                                        <div style="height: 120px; overflow: hidden; border-radius: 8px; margin-bottom: 10px; background: #eee; display: flex; align-items: center; justify-content: center;">
-                                            <img src="${item.link}" alt="${item.title}" style="max-width: 100%; max-height: 100%; object-fit: contain;">
+                                    <div style="border: 1px solid #e3f2fd; padding: 15px; border-radius: 15px; text-align: center; background: white; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
+                                        <div style="height: 120px; overflow: hidden; border-radius: 8px; margin-bottom: 10px; background: #f1f8ff; display: flex; align-items: center; justify-content: center;">
+                                            <img src="${item.link}" alt="${item.title}" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\\'fas fa-image\\' style=\\'font-size: 40px; color: #90caf9;\\'></i>';" style="max-width: 100%; max-height: 100%; object-fit: contain;">
                                         </div>
                                         <h4 style="margin: 10px 0; color: #333; font-size: 14px;">${item.title}</h4>
-                                        <a href="${item.link}" target="_blank" style="display: inline-block; background: #1976d2; color: white; padding: 5px 15px; border-radius: 5px; text-decoration: none; font-size: 13px;">View Full</a>
+                                        <a href="${item.link}" target="_blank" style="display: inline-block; background: #1976d2; color: white; padding: 6px 15px; border-radius: 5px; text-decoration: none; font-size: 12px; font-weight: bold;">View Full</a>
                                     </div>`;
                             } else {
                                 grid.innerHTML += `
                                     <div style="background: white; border: 1px solid #eee; padding: 15px; border-radius: 10px; text-align: center; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
-                                        <i class="fas ${grids[type].icon}" style="font-size: 30px; color: ${grids[type].color}; margin-bottom: 10px;"></i>
+                                        <i class="fas ${grids[type].icon}" style="font-size: 35px; color: ${grids[type].color}; margin-bottom: 15px;"></i>
                                         <h4 style="margin: 5px 0 15px 0; color: #333; font-size: 14px;">${item.title}</h4>
                                         <a href="${item.link}" target="_blank" style="display: inline-block; background: ${grids[type].color}; color: white; padding: 6px 15px; border-radius: 5px; text-decoration: none; font-size: 12px; font-weight: bold;">${grids[type].btn}</a>
                                     </div>`;
@@ -95,7 +142,6 @@
     <button id="themeToggle" style="position: fixed; bottom: 20px; right: 20px; background: #0033ad; color: white; border: none; padding: 15px 20px; border-radius: 50px; cursor: pointer; font-family: 'Poppins', sans-serif; font-weight: bold; box-shadow: 0 4px 15px rgba(0,0,0,0.2); z-index: 9999; transition: 0.3s;">
         <i class="fas fa-moon"></i> Dark Mode
     </button>
-
     <script>
         const btn = document.getElementById('themeToggle');
         btn.addEventListener('click', function() {
