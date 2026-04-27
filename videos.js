@@ -6,15 +6,19 @@ const myContent = {
     pastLives: ["ScMzIvxBSi4"], 
     
     // 📁 PPT & Resources (Direct Folder Path)
-    // Jab bhi nayi PPT aaye, bas niche ek nayi line add kar dena
     ppts: [
         { 
             title: "Artificial Intelligence in Business", 
-            link: "files/ai-in-business.pdf" // 'files' folder ke andar ye file honi chahiye
+            link: "files/ai-in-business.pdf" 
         },
         { 
             title: "Corporate Expectations Survey", 
             link: "files/corporate-survey.pdf" 
+        },
+        // Ye rahi aapki NAYI file jo abhi upload ki hai 👇
+        { 
+            title: "YouTube Presentation", 
+            link: "files/you tube.pptx" 
         }
     ],
     
