@@ -2,21 +2,13 @@
 <html lang="en">
 <head>
     <meta name="google-site-verification" content="ralf1YtAZz6KsemRlVFW78WlXmjkYWAGfqBSENFHG_4" />
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Asif Tech Global | Professional LMS</title>
 
-    <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-</head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Asif Tech Global | Professional LMS</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
 
@@ -26,7 +18,9 @@
             <a href="#">Home</a>
             <a href="#courses">Courses</a>
             <a href="#videos">Videos</a>
-            <a href="#live-center">Live</a> </div>
+            <a href="#live-center">Live</a> 
+            <a href="#resources">PPTs</a> 
+        </div>
     </nav>
 
     <section class="hero" style="background: linear-gradient(135deg, #0033ad 0%, #001a57 100%); color: white; padding: 60px 20px; text-align: center;">
@@ -46,12 +40,10 @@
             <h2 style="text-align: center; color: #0033ad;">Watch YouTube Videos</h2>
             
             <h3 style="border-left: 5px solid #0033ad; padding-left: 10px;">Latest Tutorials</h3>
-            <div id="tutorial-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-bottom: 40px;">
-                </div>
+            <div id="tutorial-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-bottom: 40px;"></div>
 
             <h3 style="border-left: 5px solid #ff0000; padding-left: 10px;">Short Lessons</h3>
-            <div id="shorts-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;">
-                </div>
+            <div id="shorts-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;"></div>
         </div>
 
         <div id="live-center" class="video-section" style="background: white; padding: 30px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); border-top: 5px solid #ff0000; margin-top: 40px;">
@@ -62,17 +54,22 @@
                 <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 15px; box-shadow: 0 10px 30px rgba(255,0,0,0.15);">
                     <iframe src="https://www.youtube.com/embed/live_stream?channel=UCRfvXfU4toossqCIbuXNblA" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;" allowfullscreen></iframe>
                 </div>
-                <p style="text-align: center; margin-top: 15px; color: #666; font-size: 0.9rem;">(Stream is currently offline if video does not play)</p>
             </div>
 
             <h3 style="border-left: 5px solid #ff0000; padding-left: 10px;">📺 Past Live Recordings</h3>
-            <p style="color: #555; margin-bottom: 20px;">Catch up on previous live sessions and masterclasses.</p>
-            
-            <div id="past-lives-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
-                </div>
+            <div id="past-lives-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;"></div>
+        </div>
+
+        <div id="resources" style="background: white; padding: 30px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); margin-top: 40px; border-left: 5px solid #00c853;">
+            <h2 style="text-align: center; color: #1b5e20;"><i class="fas fa-file-powerpoint"></i> MBA Resources & PPTs</h2>
+            <div id="ppt-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 20px;"></div>
         </div>
 
     </div>
+
+    <footer style="text-align: center; padding: 40px; color: #666;">
+        <p>&copy; 2026 Asif Tech Global Official</p>
+    </footer>
 
     <script src="videos.js"></script>
     <script>
@@ -87,8 +84,10 @@
             if (typeof myContent !== 'undefined') {
                 const tutGrid = document.getElementById('tutorial-grid');
                 const shortGrid = document.getElementById('shorts-grid');
-                const pastGrid = document.getElementById('past-lives-grid'); // Nayi line
+                const pastGrid = document.getElementById('past-lives-grid');
+                const pptGrid = document.getElementById('ppt-grid');
 
+                // Load Videos
                 if (tutGrid && myContent.tutorials) {
                     myContent.tutorials.forEach(id => { tutGrid.innerHTML += createVideoHTML(id); });
                 }
@@ -97,6 +96,18 @@
                 }
                 if (pastGrid && myContent.pastLives) {
                     myContent.pastLives.forEach(id => { pastGrid.innerHTML += createVideoHTML(id); });
+                }
+
+                // Load PPTs
+                if (pptGrid && myContent.ppts) {
+                    myContent.ppts.forEach(ppt => {
+                        pptGrid.innerHTML += `
+                            <div style="border: 1px solid #eee; padding: 20px; border-radius: 15px; text-align: center;">
+                                <i class="fas fa-file-pdf" style="font-size: 40px; color: #d32f2f; margin-bottom: 10px;"></i>
+                                <h4 style="margin: 10px 0;">${ppt.title}</h4>
+                                <a href="${ppt.link}" target="_blank" style="display: inline-block; background: #00c853; color: white; padding: 8px 20px; border-radius: 5px; text-decoration: none; font-weight: bold;">View / Download</a>
+                            </div>`;
+                    });
                 }
             }
         };
