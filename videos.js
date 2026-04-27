@@ -7,7 +7,12 @@ const myContent = {
     pdfs: [],
     ppts: [],
     images: [],
-    codes: [],
+    codes: [
+    {
+        "title": "Ppt Codeing",
+        "link": "files/codes/ppt codeing"
+    }
+],
     others: [],
     
     playlists: ["UURfvXfU4toossqCIbuXNblA"]

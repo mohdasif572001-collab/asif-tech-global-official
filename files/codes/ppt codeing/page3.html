@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Major Issues - Page 3</title>
+    <style>
+        /* Screen Reset to prevent cutting */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        body, html {
+            height: 100vh; width: 100vw;
+            overflow: hidden; 
+            display: flex; justify-content: center; align-items: center;
+            background: #010409; 
+            color: #fff;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        /* Height set to 82vh so buttons are always visible above taskbar */
+        .main-container {
+            width: 94%;
+            height: 82vh; 
+            background: rgba(13, 25, 48, 0.95);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            border: 1px solid rgba(0, 242, 255, 0.3);
+            padding: 25px 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            box-shadow: 0 0 50px rgba(0,0,0,0.8);
+        }
+
+        header { border-left: 5px solid #00f2ff; padding-left: 20px; }
+        h1 { font-size: 2.4rem; background: linear-gradient(to right, #fff, #00f2ff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .intro { color: #94a3b8; font-size: 1rem; margin-top: 5px; }
+
+        /* Grid to organize content without scrolling */
+        .grid-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin: 15px 0; }
+
+        .card { background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(0, 242, 255, 0.1); padding: 18px; border-radius: 12px; }
+        .card h3 { color: #00f2ff; font-size: 1.25rem; margin-bottom: 5px; }
+        .card p { color: #cbd5e1; font-size: 1rem; line-height: 1.4; }
+
+        .full-width-card { grid-column: span 2; background: linear-gradient(90deg, rgba(0, 242, 255, 0.15), transparent); }
+
+        /* Footer with Fixed Links */
+        footer { padding-top: 15px; border-top: 1px solid rgba(255, 255, 255, 0.1); display: flex; justify-content: space-between; align-items: center; }
+
+        .btn {
+            padding: 12px 35px;
+            border-radius: 8px;
+            font-weight: bold;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            transition: 0.3s;
+            display: inline-block;
+        }
+
+        .btn-prev { color: #94a3b8; border: 1px solid #334155; }
+        .btn-next { background: #00f2ff; color: #01060f; box-shadow: 0 0 20px rgba(0, 242, 255, 0.4); }
+        .btn:hover { transform: translateY(-2px); filter: brightness(1.2); }
+
+        .branding { font-family: monospace; color: rgba(0, 242, 255, 0.2); font-size: 0.8rem; letter-spacing: 4px; }
+    </style>
+</head>
+<body>
+
+    <div class="main-container">
+        <header>
+            <h1>Major Issues</h1>
+            <p class="intro">Some common issues in training and development programs are:</p>
+        </header>
+
+        <div class="grid-layout">
+            <div class="card">
+                <h3>High Cost-</h3>
+                <p>Training programs require money for trainers, materials, and resources</p>
+            </div>
+            <div class="card">
+                <h3>Time Consuming-</h3>
+                <p>Training takes time and may reduce working hours</p>
+            </div>
+            <div class="card">
+                <h3>Lack of Interest-</h3>
+                <p>Employees may not show interest in training programs</p>
+            </div>
+            <div class="card">
+                <h3>Inadequate Trainers-</h3>
+                <p>Lack of skilled and experienced trainers</p>
+            </div>
+            <div class="card full-width-card">
+                <h3>Poor Training Design-</h3>
+                <p>Training content may not match job requirements</p>
+            </div>
+        </div>
+
+        <footer>
+            <a href="page2.html" class="btn btn-prev">← BACK</a>
+            
+            <div class="branding">MOHD ASIF // ANALYST</div>
+            
+            <a href="page4.html" class="btn btn-next">NEXT SLIDE →</a>
+        </footer>
+    </div>
+
+</body>
+</html>
