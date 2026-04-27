@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="google-site-verification" content="ralf1YtAZz6KsemRlVFW78WlXmjkYWAGfqBSENFHG_4" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resource Library | Asif Tech Global</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+    <nav>
+        <div class="logo"><strong>ASIF TECH</strong> GLOBAL</div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="library.html" style="color: #00c853; border-bottom: 2px solid #00c853;">Library</a> </div>
+    </nav>
+
+    <div class="container" style="max-width: 1200px; margin: auto; padding: 20px; margin-top: 20px;">
+        
+        <div id="downloads" style="background: white; padding: 30px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); border-left: 5px solid #00c853;">
+            <h2 style="text-align: center; color: #1b5e20; margin-bottom: 40px;"><i class="fas fa-folder-open"></i> Premium Resource Library</h2>
+            
+            <div style="margin-bottom: 40px; padding: 20px; border: 1px solid #b2dfdb; border-radius: 15px; background: #f0fbf9;">
+                <h3 style="color: #00796b; margin-top: 0;"><i class="fas fa-code"></i> Source Code & Scripts</h3>
+                <div id="code-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-top: 15px;"></div>
+            </div>
+
+            <div style="margin-bottom: 40px; padding: 20px; border: 1px solid #ffcdd2; border-radius: 15px; background: #fffafb;">
+                <h3 style="color: #d32f2f; margin-top: 0;"><i class="fas fa-file-pdf"></i> PDF Documents & Notes</h3>
+                <div id="pdf-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-top: 15px;"></div>
+            </div>
+
+            <div style="margin-bottom: 40px; padding: 20px; border: 1px solid #ffe0b2; border-radius: 15px; background: #fffcf8;">
+                <h3 style="color: #f57c00; margin-top: 0;"><i class="fas fa-file-powerpoint"></i> Presentations (PPT)</h3>
+                <div id="ppt-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-top: 15px;"></div>
+            </div>
+
+            <div style="margin-bottom: 40px; padding: 20px; border: 1px solid #bbdefb; border-radius: 15px; background: #f8fbff;">
+                <h3 style="color: #1976d2; margin-top: 0;"><i class="fas fa-images"></i> Image Gallery</h3>
+                <div id="image-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-top: 15px;"></div>
+            </div>
+
+            <div style="padding: 20px; border: 1px solid #cfd8dc; border-radius: 15px; background: #fbfcfc;">
+                <h3 style="color: #455a64; margin-top: 0;"><i class="fas fa-file-archive"></i> Other Files</h3>
+                <div id="other-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-top: 15px;"></div>
+            </div>
+            
+        </div>
+    </div>
+
+    <script src="videos.js"></script>
+    <script>
+        window.onload = function() {
+            if (typeof myContent !== 'undefined') {
+                const grids = {
+                    codes: { id: 'code-grid', color: '#00796b', icon: 'fa-code', btn: 'Get Code' },
+                    pdfs: { id: 'pdf-grid', color: '#d32f2f', icon: 'fa-file-pdf', btn: 'View PDF' },
+                    ppts: { id: 'ppt-grid', color: '#f57c00', icon: 'fa-file-powerpoint', btn: 'Download PPT' },
+                    images: { id: 'image-grid', color: '#1976d2', icon: 'fa-image', btn: 'View Image' },
+                    others: { id: 'other-grid', color: '#455a64', icon: 'fa-file-alt', btn: 'Download File' }
+                };
+
+                for (let type in grids) {
+                    const grid = document.getElementById(grids[type].id);
+                    if (grid && myContent[type]) {
+                        myContent[type].forEach(item => {
+                            // Agar image hai toh preview dikhaye, nahi toh normal dabba
+                            if (type === 'images') {
+                                grid.innerHTML += `
+                                    <div style="border: 1px solid #e3f2fd; padding: 15px; border-radius: 15px; text-align: center; background: #fafafa;">
+                                        <div style="height: 120px; overflow: hidden; border-radius: 8px; margin-bottom: 10px; background: #eee; display: flex; align-items: center; justify-content: center;">
+                                            <img src="${item.link}" alt="${item.title}" style="max-width: 100%; max-height: 100%; object-fit: contain;">
+                                        </div>
+                                        <h4 style="margin: 10px 0; color: #333; font-size: 14px;">${item.title}</h4>
+                                        <a href="${item.link}" target="_blank" style="display: inline-block; background: #1976d2; color: white; padding: 5px 15px; border-radius: 5px; text-decoration: none; font-size: 13px;">View Full</a>
+                                    </div>`;
+                            } else {
+                                grid.innerHTML += `
+                                    <div style="background: white; border: 1px solid #eee; padding: 15px; border-radius: 10px; text-align: center; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
+                                        <i class="fas ${grids[type].icon}" style="font-size: 30px; color: ${grids[type].color}; margin-bottom: 10px;"></i>
+                                        <h4 style="margin: 5px 0 15px 0; color: #333; font-size: 14px;">${item.title}</h4>
+                                        <a href="${item.link}" target="_blank" style="display: inline-block; background: ${grids[type].color}; color: white; padding: 6px 15px; border-radius: 5px; text-decoration: none; font-size: 12px; font-weight: bold;">${grids[type].btn}</a>
+                                    </div>`;
+                            }
+                        });
+                    }
+                }
+            }
+        };
+    </script>
+
+    <button id="themeToggle" style="position: fixed; bottom: 20px; right: 20px; background: #0033ad; color: white; border: none; padding: 15px 20px; border-radius: 50px; cursor: pointer; font-family: 'Poppins', sans-serif; font-weight: bold; box-shadow: 0 4px 15px rgba(0,0,0,0.2); z-index: 9999; transition: 0.3s;">
+        <i class="fas fa-moon"></i> Dark Mode
+    </button>
+
+    <script>
+        const btn = document.getElementById('themeToggle');
+        btn.addEventListener('click', function() {
+            document.body.classList.toggle('dark-theme');
+            if(document.body.classList.contains('dark-theme')) {
+                btn.innerHTML = '<i class="fas fa-sun"></i> Light Mode';
+                btn.style.background = '#ff0000';
+            } else {
+                btn.innerHTML = '<i class="fas fa-moon"></i> Dark Mode';
+                btn.style.background = '#0033ad';
+            }
+        });
+    </script>
+</body>
+</html>
