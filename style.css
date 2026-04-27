@@ -90,3 +90,102 @@ nav {
 @media (max-width: 768px) {
     .video-container { grid-template-columns: 1fr; }
 }
+/* =========================================
+   ASIF TECH GLOBAL - PREMIUM HIGH-TECH THEME
+   ========================================= */
+
+/* Smooth Scrolling poori site ke liye */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Background ko thoda soft aur modern banaya */
+body {
+    background: linear-gradient(135deg, #f4f7f6 0%, #e5eaf1 100%);
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+/* 🧊 Glassmorphism Navbar (Apple MacBook jaisa effect) */
+nav {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(15px); /* Ye background ko dhundhla karega */
+    -webkit-backdrop-filter: blur(15px);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 40px;
+}
+
+nav .logo {
+    font-size: 1.5rem;
+    color: #0033ad;
+}
+
+nav a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 600;
+    margin-left: 25px;
+    transition: 0.3s ease;
+}
+
+nav a:hover {
+    color: #ff0000;
+    text-shadow: 0 0 10px rgba(255,0,0,0.3);
+}
+
+/* 🪄 Magic Hover Effects - Cards hawa mein uthenge */
+#tutorial-grid div, 
+#shorts-grid div, 
+#past-lives-grid div, 
+#pdf-grid div, 
+#ppt-grid div, 
+#image-grid div {
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+    cursor: pointer;
+}
+
+/* Jab mouse upar jayega toh Card uth kar shadow dega */
+#tutorial-grid div:hover, 
+#shorts-grid div:hover, 
+#past-lives-grid div:hover, 
+#pdf-grid div:hover, 
+#ppt-grid div:hover, 
+#image-grid div:hover {
+    transform: translateY(-10px) scale(1.02) !important;
+    box-shadow: 0 20px 40px rgba(0, 51, 173, 0.15) !important;
+    border-color: #0033ad !important;
+}
+
+/* 🎨 Hero Section Animation (Moving Gradient) */
+.hero {
+    animation: gradientBG 8s ease infinite;
+    background-size: 200% 200% !important;
+    border-bottom: 5px solid #00c853;
+}
+
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Buttons par Hover Effect */
+a[target="_blank"] {
+    transition: 0.3s;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+a[target="_blank"]:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+    filter: brightness(1.1);
+}
