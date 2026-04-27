@@ -16,7 +16,7 @@
             <a href="#">Home</a>
             <a href="#courses">Courses</a>
             <a href="#videos">Videos</a>
-        </div>
+            <a href="#live-center">Live</a> </div>
     </nav>
 
     <section class="hero" style="background: linear-gradient(135deg, #0033ad 0%, #001a57 100%); color: white; padding: 60px 20px; text-align: center;">
@@ -43,17 +43,8 @@
             <div id="shorts-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;">
                 </div>
         </div>
-    </div>
 
-    <script src="videos.js"></script>
-    <script>
-        function createVideoHTML(id) {
-            return `
-                <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 12px; background:#000;">
-                    <iframe src="https://www.youtube.com/embed/${id}" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;" allowfullscreen></iframe>
-                </div>`;
-        }
-        <div id="live-center" class="video-section" style="border-top: 5px solid #ff0000; margin-top: 40px;">
+        <div id="live-center" class="video-section" style="background: white; padding: 30px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); border-top: 5px solid #ff0000; margin-top: 40px;">
             <h2 style="text-align: center; color: #ff0000; font-size: 2.2rem;"><i class="fas fa-broadcast-tower"></i> Live Center</h2>
             
             <div style="background: #fdf5f5; padding: 25px; border-radius: 20px; margin-bottom: 40px; box-shadow: inset 0 0 15px rgba(255,0,0,0.05);">
@@ -70,6 +61,18 @@
             <div id="past-lives-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
                 </div>
         </div>
+
+    </div>
+
+    <script src="videos.js"></script>
+    <script>
+        function createVideoHTML(id) {
+            return `
+                <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 12px; background:#000;">
+                    <iframe src="https://www.youtube.com/embed/${id}" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;" allowfullscreen></iframe>
+                </div>`;
+        }
+
         window.onload = function() {
             if (typeof myContent !== 'undefined') {
                 const tutGrid = document.getElementById('tutorial-grid');
@@ -82,14 +85,11 @@
                 if (shortGrid && myContent.shorts) {
                     myContent.shorts.forEach(id => { shortGrid.innerHTML += createVideoHTML(id); });
                 }
-                // Nayi line jo Past Lives load karegi:
                 if (pastGrid && myContent.pastLives) {
                     myContent.pastLives.forEach(id => { pastGrid.innerHTML += createVideoHTML(id); });
                 }
             }
         };
-        
-            
     </script>
 </body>
 </html>
