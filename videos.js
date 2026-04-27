@@ -4,24 +4,9 @@ const myContent = {
     shorts: ["uCWigClzovY", "YRaIypeXVcY"],
     pastLives: ["ScMzIvxBSi4"],
     
-    pdfs: [
-    {
-        "title": "Asif",
-        "link": "files/ASIF.pdf"
-    }
-],
-    ppts: [
-    {
-        "title": "You Tube",
-        "link": "files/you tube.pptx"
-    }
-],
-    images: [
-    {
-        "title": "Asif",
-        "link": "files/asif.png"
-    }
-],
+    pdfs: [],
+    ppts: [],
+    images: [],
     
     playlists: ["UURfvXfU4toossqCIbuXNblA"]
 };
