@@ -5,10 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Asif Tech Global | Professional LMS</title>
-
+    <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
@@ -16,96 +15,99 @@
         <div class="logo"><strong>ASIF TECH</strong> GLOBAL</div>
         <div class="nav-links">
             <a href="#">Home</a>
-            <a href="#courses">Courses</a>
             <a href="#videos">Videos</a>
-            <a href="#live-center">Live</a> 
-            <a href="#resources">PPTs</a> 
+            <a href="#live-center">Live</a>
+            <a href="#downloads">Downloads</a>
         </div>
     </nav>
 
-    <section class="hero" style="background: linear-gradient(135deg, #0033ad 0%, #001a57 100%); color: white; padding: 60px 20px; text-align: center;">
-        <h1>Master Advanced Scripting & Tech</h1>
-        <p>Expert Level Training for Next-Gen Developers</p>
-    </section>
-
     <div class="container" style="max-width: 1200px; margin: auto; padding: 20px;">
         
-        <div id="courses" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; padding: 40px 0;">
-            <div style="background: white; padding: 20px; border-radius: 15px; text-align: center; box-shadow: 0 10px 20px rgba(0,0,0,0.05);"><i class="fas fa-graduation-cap" style="font-size: 30px; color: #0033ad;"></i><h3>All Courses</h3></div>
-            <div style="background: white; padding: 20px; border-radius: 15px; text-align: center; box-shadow: 0 10px 20px rgba(0,0,0,0.05);"><i class="fas fa-book-open" style="font-size: 30px; color: #0033ad;"></i><h3>Extra Topics</h3></div>
-            <div style="background: white; padding: 20px; border-radius: 15px; text-align: center; box-shadow: 0 10px 20px rgba(0,0,0,0.05);"><i class="fas fa-microchip" style="font-size: 30px; color: #0033ad;"></i><h3>Automation</h3></div>
-        </div>
-
-        <div id="videos" style="background: white; padding: 30px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
-            <h2 style="text-align: center; color: #0033ad;">Watch YouTube Videos</h2>
-            
-            <h3 style="border-left: 5px solid #0033ad; padding-left: 10px;">Latest Tutorials</h3>
-            <div id="tutorial-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-bottom: 40px;"></div>
-
-            <h3 style="border-left: 5px solid #ff0000; padding-left: 10px;">Short Lessons</h3>
+        <div id="videos" style="background: white; padding: 30px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); margin-bottom: 30px;">
+            <h2 style="text-align: center; color: #0033ad;">Latest Tutorials</h2>
+            <div id="tutorial-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-bottom: 20px;"></div>
+            <h3 style="border-left: 5px solid #ff0000; padding-left: 10px;">Shorts</h3>
             <div id="shorts-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;"></div>
         </div>
 
-        <div id="live-center" class="video-section" style="background: white; padding: 30px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); border-top: 5px solid #ff0000; margin-top: 40px;">
-            <h2 style="text-align: center; color: #ff0000; font-size: 2.2rem;"><i class="fas fa-broadcast-tower"></i> Live Center</h2>
-            
-            <div style="background: #fdf5f5; padding: 25px; border-radius: 20px; margin-bottom: 40px; box-shadow: inset 0 0 15px rgba(255,0,0,0.05);">
-                <h3 style="color: #cc0000; text-align: center; margin-bottom: 20px;">🔴 Watch Live Stream</h3>
-                <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 15px; box-shadow: 0 10px 30px rgba(255,0,0,0.15);">
-                    <iframe src="https://www.youtube.com/embed/live_stream?channel=UCRfvXfU4toossqCIbuXNblA" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;" allowfullscreen></iframe>
-                </div>
-            </div>
-
-            <h3 style="border-left: 5px solid #ff0000; padding-left: 10px;">📺 Past Live Recordings</h3>
+        <div id="live-center" style="background: white; padding: 30px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); margin-bottom: 30px;">
+            <h2 style="text-align: center; color: #ff0000;"><i class="fas fa-broadcast-tower"></i> Live Center</h2>
             <div id="past-lives-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;"></div>
         </div>
 
-        <div id="resources" style="background: white; padding: 30px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); margin-top: 40px; border-left: 5px solid #00c853;">
-            <h2 style="text-align: center; color: #1b5e20;"><i class="fas fa-file-powerpoint"></i> MBA Resources & PPTs</h2>
-            <div id="ppt-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 20px;"></div>
+        <div id="downloads" style="background: white; padding: 30px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); border-left: 5px solid #00c853;">
+            <h2 style="text-align: center; color: #1b5e20; margin-bottom: 30px;"><i class="fas fa-cloud-download-alt"></i> Material Downloads</h2>
+            
+            <h3 style="border-bottom: 2px solid #d32f2f; color: #d32f2f; padding-bottom: 5px;"><i class="fas fa-file-pdf"></i> PDF Documents</h3>
+            <div id="pdf-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-bottom: 30px; margin-top: 15px;"></div>
+
+            <h3 style="border-bottom: 2px solid #f57c00; color: #f57c00; padding-bottom: 5px;"><i class="fas fa-file-powerpoint"></i> Presentations (PPT)</h3>
+            <div id="ppt-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-bottom: 30px; margin-top: 15px;"></div>
+
+            <h3 style="border-bottom: 2px solid #1976d2; color: #1976d2; padding-bottom: 5px;"><i class="fas fa-images"></i> Photos & Diagrams</h3>
+            <div id="image-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-top: 15px;"></div>
+            
         </div>
-
     </div>
-
-    <footer style="text-align: center; padding: 40px; color: #666;">
-        <p>&copy; 2026 Asif Tech Global Official</p>
-    </footer>
 
     <script src="videos.js"></script>
     <script>
         function createVideoHTML(id) {
-            return `
-                <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 12px; background:#000;">
-                    <iframe src="https://www.youtube.com/embed/${id}" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;" allowfullscreen></iframe>
-                </div>`;
+            return `<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 12px; background:#000;">
+                        <iframe src="https://www.youtube.com/embed/${id}" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;" allowfullscreen></iframe>
+                    </div>`;
         }
 
         window.onload = function() {
             if (typeof myContent !== 'undefined') {
+                // Video Grids
                 const tutGrid = document.getElementById('tutorial-grid');
                 const shortGrid = document.getElementById('shorts-grid');
                 const pastGrid = document.getElementById('past-lives-grid');
+                
+                if (tutGrid && myContent.tutorials) myContent.tutorials.forEach(id => { tutGrid.innerHTML += createVideoHTML(id); });
+                if (shortGrid && myContent.shorts) myContent.shorts.forEach(id => { shortGrid.innerHTML += createVideoHTML(id); });
+                if (pastGrid && myContent.pastLives) myContent.pastLives.forEach(id => { pastGrid.innerHTML += createVideoHTML(id); });
+
+                // Resource Grids
+                const pdfGrid = document.getElementById('pdf-grid');
                 const pptGrid = document.getElementById('ppt-grid');
+                const imgGrid = document.getElementById('image-grid');
 
-                // Load Videos
-                if (tutGrid && myContent.tutorials) {
-                    myContent.tutorials.forEach(id => { tutGrid.innerHTML += createVideoHTML(id); });
-                }
-                if (shortGrid && myContent.shorts) {
-                    myContent.shorts.forEach(id => { shortGrid.innerHTML += createVideoHTML(id); });
-                }
-                if (pastGrid && myContent.pastLives) {
-                    myContent.pastLives.forEach(id => { pastGrid.innerHTML += createVideoHTML(id); });
+                // Load PDFs (Red Theme)
+                if (pdfGrid && myContent.pdfs) {
+                    myContent.pdfs.forEach(pdf => {
+                        pdfGrid.innerHTML += `
+                            <div style="border: 1px solid #ffebee; padding: 20px; border-radius: 15px; text-align: center; background: #fafafa;">
+                                <i class="fas fa-file-pdf" style="font-size: 40px; color: #d32f2f; margin-bottom: 10px;"></i>
+                                <h4 style="margin: 10px 0; color: #333;">${pdf.title}</h4>
+                                <a href="${pdf.link}" target="_blank" style="display: inline-block; background: #d32f2f; color: white; padding: 8px 20px; border-radius: 5px; text-decoration: none; font-size: 14px;">View PDF</a>
+                            </div>`;
+                    });
                 }
 
-                // Load PPTs
+                // Load PPTs (Orange Theme)
                 if (pptGrid && myContent.ppts) {
                     myContent.ppts.forEach(ppt => {
                         pptGrid.innerHTML += `
-                            <div style="border: 1px solid #eee; padding: 20px; border-radius: 15px; text-align: center;">
-                                <i class="fas fa-file-pdf" style="font-size: 40px; color: #d32f2f; margin-bottom: 10px;"></i>
-                                <h4 style="margin: 10px 0;">${ppt.title}</h4>
-                                <a href="${ppt.link}" target="_blank" style="display: inline-block; background: #00c853; color: white; padding: 8px 20px; border-radius: 5px; text-decoration: none; font-weight: bold;">View / Download</a>
+                            <div style="border: 1px solid #fff3e0; padding: 20px; border-radius: 15px; text-align: center; background: #fafafa;">
+                                <i class="fas fa-file-powerpoint" style="font-size: 40px; color: #f57c00; margin-bottom: 10px;"></i>
+                                <h4 style="margin: 10px 0; color: #333;">${ppt.title}</h4>
+                                <a href="${ppt.link}" target="_blank" style="display: inline-block; background: #f57c00; color: white; padding: 8px 20px; border-radius: 5px; text-decoration: none; font-size: 14px;">Download PPT</a>
+                            </div>`;
+                    });
+                }
+
+                // Load Photos (Blue Theme with Image Preview)
+                if (imgGrid && myContent.images) {
+                    myContent.images.forEach(img => {
+                        imgGrid.innerHTML += `
+                            <div style="border: 1px solid #e3f2fd; padding: 15px; border-radius: 15px; text-align: center; background: #fafafa;">
+                                <div style="height: 120px; overflow: hidden; border-radius: 8px; margin-bottom: 10px; background: #eee; display: flex; align-items: center; justify-content: center;">
+                                    <img src="${img.link}" alt="${img.title}" style="max-width: 100%; max-height: 100%; object-fit: contain;">
+                                </div>
+                                <h4 style="margin: 10px 0; color: #333; font-size: 14px;">${img.title}</h4>
+                                <a href="${img.link}" target="_blank" style="display: inline-block; background: #1976d2; color: white; padding: 5px 15px; border-radius: 5px; text-decoration: none; font-size: 13px;">View Full</a>
                             </div>`;
                     });
                 }
