@@ -53,11 +53,28 @@
                     <iframe src="https://www.youtube.com/embed/${id}" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;" allowfullscreen></iframe>
                 </div>`;
         }
+        <div id="live-center" class="video-section" style="border-top: 5px solid #ff0000; margin-top: 40px;">
+            <h2 style="text-align: center; color: #ff0000; font-size: 2.2rem;"><i class="fas fa-broadcast-tower"></i> Live Center</h2>
+            
+            <div style="background: #fdf5f5; padding: 25px; border-radius: 20px; margin-bottom: 40px; box-shadow: inset 0 0 15px rgba(255,0,0,0.05);">
+                <h3 style="color: #cc0000; text-align: center; margin-bottom: 20px;">🔴 Watch Live Stream</h3>
+                <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 15px; box-shadow: 0 10px 30px rgba(255,0,0,0.15);">
+                    <iframe src="https://www.youtube.com/embed/live_stream?channel=UCRfvXfU4toossqCIbuXNblA" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;" allowfullscreen></iframe>
+                </div>
+                <p style="text-align: center; margin-top: 15px; color: #666; font-size: 0.9rem;">(Stream is currently offline if video does not play)</p>
+            </div>
 
+            <h3 style="border-left: 5px solid #ff0000; padding-left: 10px;">📺 Past Live Recordings</h3>
+            <p style="color: #555; margin-bottom: 20px;">Catch up on previous live sessions and masterclasses.</p>
+            
+            <div id="past-lives-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
+                </div>
+        </div>
         window.onload = function() {
             if (typeof myContent !== 'undefined') {
                 const tutGrid = document.getElementById('tutorial-grid');
                 const shortGrid = document.getElementById('shorts-grid');
+                const pastGrid = document.getElementById('past-lives-grid'); // Nayi line
 
                 if (tutGrid && myContent.tutorials) {
                     myContent.tutorials.forEach(id => { tutGrid.innerHTML += createVideoHTML(id); });
@@ -65,8 +82,14 @@
                 if (shortGrid && myContent.shorts) {
                     myContent.shorts.forEach(id => { shortGrid.innerHTML += createVideoHTML(id); });
                 }
+                // Nayi line jo Past Lives load karegi:
+                if (pastGrid && myContent.pastLives) {
+                    myContent.pastLives.forEach(id => { pastGrid.innerHTML += createVideoHTML(id); });
+                }
             }
         };
+        
+            
     </script>
 </body>
 </html>
