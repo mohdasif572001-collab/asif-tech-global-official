@@ -9,15 +9,24 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        /* 🎛️ Filter Buttons Design */
+        /* 🎛️ Filter Buttons */
         .filter-menu { text-align: center; margin-bottom: 30px; display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
         .filter-btn { background: #f1f5f9; border: 2px solid transparent; color: #334155; padding: 10px 25px; border-radius: 50px; cursor: pointer; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 14px; transition: 0.3s; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
-        .filter-btn:hover { transform: translateY(-3px); box-shadow: 0 6px 12px rgba(0,0,0,0.1); }
         .filter-btn.active { background: #00c853; color: white; border-color: #00c853; box-shadow: 0 6px 15px rgba(0, 200, 83, 0.3); }
         
-        /* Dark Mode support for buttons */
-        .dark-theme .filter-btn { background: #1e293b; color: #cbd5e1; border: 1px solid #334155; }
-        .dark-theme .filter-btn.active { background: #00ffcc; color: #000; border-color: #00ffcc; box-shadow: 0 0 15px rgba(0, 255, 204, 0.4); }
+        /* 💳 Payment Modal Styling */
+        .modal { display: none; position: fixed; z-index: 10000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); backdrop-filter: blur(5px); }
+        .modal-content { background: white; margin: 5% auto; padding: 25px; border-radius: 25px; width: 90%; max-width: 400px; text-align: center; position: relative; box-shadow: 0 20px 50px rgba(0,0,0,0.3); animation: slideDown 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+        @keyframes slideDown { from {transform: scale(0.8); opacity: 0;} to {transform: scale(1); opacity: 1;} }
+        .close-btn { position: absolute; right: 20px; top: 15px; font-size: 28px; cursor: pointer; color: #aaa; transition: 0.3s; }
+        .close-btn:hover { color: #ff0000; }
+        .qr-img { width: 220px; height: 220px; margin: 15px auto; border: 8px solid #f8f9fa; border-radius: 15px; display: block; object-fit: contain; }
+        .pay-icons { display: flex; justify-content: center; gap: 20px; font-size: 30px; margin: 20px 0; color: #555; }
+        .whatsapp-btn { background: #25D366; color: white; padding: 15px; display: flex; align-items: center; justify-content: center; gap: 10px; text-decoration: none; border-radius: 12px; font-weight: bold; font-size: 16px; margin-top: 15px; transition: 0.3s; }
+        .whatsapp-btn:hover { background: #128C7E; transform: translateY(-2px); }
+
+        .dark-theme .modal-content { background: #1e293b; color: #fff; }
+        .dark-theme .modal-content p { color: #cbd5e1 !important; }
     </style>
 </head>
 <body>
@@ -30,8 +39,29 @@
         </div>
     </nav>
 
+    <div id="paymentModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <h3 id="modalTitle" style="color: #0033ad; margin-bottom: 5px;">Premium Resource</h3>
+            <p style="color: #666; font-size: 15px; margin-bottom: 10px;">Pay <strong>₹<span id="modalPrice">0</span></strong> to get access</p>
+            
+            <img src="files/images/my-qr.jpg" alt="Scan to Pay" class="qr-img" onerror="this.src='https://via.placeholder.com/220?text=Scan+QR+to+Pay'">
+            
+            <div class="pay-icons">
+                <i class="fab fa-google-pay" title="Google Pay" style="color: #4285F4;"></i>
+                <i class="fas fa-mobile-alt" title="PhonePe/BHIM" style="color: #6739B7;"></i>
+                <i class="fab fa-amazon-pay" title="Amazon Pay" style="color: #FF9900;"></i>
+                <i class="fab fa-paypal" title="PayPal" style="color: #003087;"></i>
+            </div>
+            
+            <p style="font-size: 13px; color: #888; margin-bottom: 15px;">Send payment screenshot to WhatsApp for the file/link</p>
+            <a id="whatsappLink" href="#" target="_blank" class="whatsapp-btn">
+                <i class="fab fa-whatsapp"></i> Send Screenshot
+            </a>
+        </div>
+    </div>
+
     <div class="container" style="max-width: 1200px; margin: auto; padding: 20px; margin-top: 20px;">
-        
         <div id="downloads" style="background: white; padding: 30px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); border-left: 5px solid #00c853;">
             <h2 style="text-align: center; color: #1b5e20; margin-bottom: 20px;"><i class="fas fa-folder-open"></i> Premium Resource Library</h2>
             
@@ -68,43 +98,39 @@
                 <h3 style="color: #455a64; margin-top: 0;"><i class="fas fa-file-archive"></i> Other Files</h3>
                 <div id="other-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 15px; margin-top: 15px;"></div>
             </div>
-            
         </div>
     </div>
 
     <script src="videos.js"></script>
     <script>
-        // 🎛️ Filter Logic (Hide/Show Sections)
-        function filterSelection(category, btnElement) {
-            // Remove 'active' class from all buttons
-            var buttons = document.getElementsByClassName("filter-btn");
-            for (var i = 0; i < buttons.length; i++) {
-                buttons[i].classList.remove("active");
-            }
-            // Add 'active' class to clicked button
-            btnElement.classList.add("active");
+        const MY_WHATSAPP = "911234567890"; // 👈 APNA WHATSAPP NUMBER YAHAN DAALEIN (With 91)
 
-            // Get all sections
+        function openPayment(title, price) {
+            document.getElementById('modalTitle').innerText = title;
+            document.getElementById('modalPrice').innerText = price;
+            document.getElementById('whatsappLink').href = `https://wa.me/${MY_WHATSAPP}?text=Hello Asif, I want to purchase ${title}. I have paid ₹${price}. Please provide the file.`;
+            document.getElementById('paymentModal').style.display = "block";
+        }
+
+        function closeModal() {
+            document.getElementById('paymentModal').style.display = "none";
+        }
+
+        function filterSelection(category, btnElement) {
+            var buttons = document.getElementsByClassName("filter-btn");
+            for (var i = 0; i < buttons.length; i++) { buttons[i].classList.remove("active"); }
+            btnElement.classList.add("active");
             var sections = ['codes', 'pdfs', 'ppts', 'images', 'others'];
-            
-            // Loop through sections and hide/show
             sections.forEach(function(sec) {
                 var element = document.getElementById("sec-" + sec);
-                if (element) {
-                    if (category === 'all' || category === sec) {
-                        element.style.display = "block";
-                    } else {
-                        element.style.display = "none";
-                    }
-                }
+                if (element) element.style.display = (category === 'all' || category === sec) ? "block" : "none";
             });
         }
 
-        // 🗂️ Load Data from videos.js
         window.onload = function() {
             if (typeof myContent !== 'undefined') {
                 const grids = {
-                    codes: { id: 'code-grid', color: '#00796b', icon: 'fa-code', btn: 'Get Code' },
+                    codes: { id: 'code-grid', color: '#00796b', icon: 'fa-code', btn: 'Source Code' },
                     pdfs: { id: 'pdf-grid', color: '#d32f2f', icon: 'fa-file-pdf', btn: 'View PDF' },
                     ppts: { id: 'ppt-grid', color: '#f57c00', icon: 'fa-file-powerpoint', btn: 'Download PPT' },
                     images: { id: 'image-grid', color: '#1976d2', icon: 'fa-image', btn: 'View Image' },
@@ -115,45 +141,21 @@
                     const grid = document.getElementById(grids[type].id);
                     if (grid && myContent[type]) {
                         myContent[type].forEach(item => {
-                            if (type === 'images') {
-                                grid.innerHTML += `
-                                    <div style="border: 1px solid #e3f2fd; padding: 15px; border-radius: 15px; text-align: center; background: white; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
-                                        <div style="height: 120px; overflow: hidden; border-radius: 8px; margin-bottom: 10px; background: #f1f8ff; display: flex; align-items: center; justify-content: center;">
-                                            <img src="${item.link}" alt="${item.title}" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\\'fas fa-image\\' style=\\'font-size: 40px; color: #90caf9;\\'></i>';" style="max-width: 100%; max-height: 100%; object-fit: contain;">
-                                        </div>
-                                        <h4 style="margin: 10px 0; color: #333; font-size: 14px;">${item.title}</h4>
-                                        <a href="${item.link}" target="_blank" style="display: inline-block; background: #1976d2; color: white; padding: 6px 15px; border-radius: 5px; text-decoration: none; font-size: 12px; font-weight: bold;">View Full</a>
-                                    </div>`;
-                            } else {
-                                grid.innerHTML += `
-                                    <div style="background: white; border: 1px solid #eee; padding: 15px; border-radius: 10px; text-align: center; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
-                                        <i class="fas ${grids[type].icon}" style="font-size: 35px; color: ${grids[type].color}; margin-bottom: 15px;"></i>
-                                        <h4 style="margin: 5px 0 15px 0; color: #333; font-size: 14px;">${item.title}</h4>
-                                        <a href="${item.link}" target="_blank" style="display: inline-block; background: ${grids[type].color}; color: white; padding: 6px 15px; border-radius: 5px; text-decoration: none; font-size: 12px; font-weight: bold;">${grids[type].btn}</a>
-                                    </div>`;
-                            }
+                            const isPaid = item.isPaid === true;
+                            const btnLabel = isPaid ? `<i class="fas fa-lock"></i> Buy ₹${item.price}` : grids[type].btn;
+                            const action = isPaid ? `onclick="openPayment('${item.title}', '${item.price}')"` : `href="${item.link}" target="_blank"`;
+                            
+                            grid.innerHTML += `
+                                <div style="background: white; border: 1px solid #eee; padding: 15px; border-radius: 10px; text-align: center; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
+                                    <i class="fas ${grids[type].icon}" style="font-size: 35px; color: ${grids[type].color}; margin-bottom: 15px;"></i>
+                                    <h4 style="margin: 5px 0 15px 0; color: #333; font-size: 14px;">${item.title}</h4>
+                                    <a ${action} style="cursor:pointer; display: inline-block; background: ${isPaid ? '#f57c00' : grids[type].color}; color: white; padding: 6px 15px; border-radius: 5px; text-decoration: none; font-size: 12px; font-weight: bold;">${btnLabel}</a>
+                                </div>`;
                         });
                     }
                 }
             }
         };
-    </script>
-
-    <button id="themeToggle" style="position: fixed; bottom: 20px; right: 20px; background: #0033ad; color: white; border: none; padding: 15px 20px; border-radius: 50px; cursor: pointer; font-family: 'Poppins', sans-serif; font-weight: bold; box-shadow: 0 4px 15px rgba(0,0,0,0.2); z-index: 9999; transition: 0.3s;">
-        <i class="fas fa-moon"></i> Dark Mode
-    </button>
-    <script>
-        const btn = document.getElementById('themeToggle');
-        btn.addEventListener('click', function() {
-            document.body.classList.toggle('dark-theme');
-            if(document.body.classList.contains('dark-theme')) {
-                btn.innerHTML = '<i class="fas fa-sun"></i> Light Mode';
-                btn.style.background = '#ff0000';
-            } else {
-                btn.innerHTML = '<i class="fas fa-moon"></i> Dark Mode';
-                btn.style.background = '#0033ad';
-            }
-        });
     </script>
 </body>
 </html>
