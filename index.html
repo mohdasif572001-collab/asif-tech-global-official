@@ -114,5 +114,22 @@
             }
         };
     </script>
+    <button id="themeToggle" style="position: fixed; bottom: 20px; right: 20px; background: #0033ad; color: white; border: none; padding: 15px 20px; border-radius: 50px; cursor: pointer; font-family: 'Poppins', sans-serif; font-weight: bold; box-shadow: 0 4px 15px rgba(0,0,0,0.2); z-index: 9999; transition: 0.3s;">
+        <i class="fas fa-moon"></i> Dark Mode
+    </button>
+
+    <script>
+        const btn = document.getElementById('themeToggle');
+        btn.addEventListener('click', function() {
+            document.body.classList.toggle('dark-theme');
+            if(document.body.classList.contains('dark-theme')) {
+                btn.innerHTML = '<i class="fas fa-sun"></i> Light Mode';
+                btn.style.background = '#ff0000';
+            } else {
+                btn.innerHTML = '<i class="fas fa-moon"></i> Dark Mode';
+                btn.style.background = '#0033ad';
+            }
+        });
+    </script>
 </body>
 </html>
