@@ -17,7 +17,7 @@ const myContent = {
 
     // 🖼️ 3. Sirf Photos/Images Yahan Daalein (Jaise Tech Diagrams, Banners)
     images: [
-        { title: "Channel Logo", link: "files/logo.png" }, // asif.jpeg
+        { title: "Channel Logo", link: "files/logo.png" }, // asif.png
         { title: "Project Diagram", link: "files/diagram.jpg" }
     ],
     
