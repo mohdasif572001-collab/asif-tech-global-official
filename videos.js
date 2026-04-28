@@ -3,7 +3,6 @@ const myContent = {
     tutorials: ["ScMzIvxBSi4", "5QrR9PZW_BI"],
     shorts: ["uCWigClzovY", "YRaIypeXVcY"],
     pastLives: ["ScMzIvxBSi4"],
-    
     pdfs: [],
     ppts: [],
     images: [],
@@ -22,6 +21,5 @@ const myContent = {
     }
 ],
     others: [],
-    
     playlists: ["UURfvXfU4toossqCIbuXNblA"]
 };
