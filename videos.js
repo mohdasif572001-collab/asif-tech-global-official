@@ -17,10 +17,6 @@ const myContent = {
         "link": "files/codes/Optimize_PC.ps1"
     },
     {
-        "title": "Ppt Codeing",
-        "link": "files/codes/ppt codeing"
-    },
-    {
         "title": "Web_Check",
         "link": "files/codes/Web_Check.py"
     }
