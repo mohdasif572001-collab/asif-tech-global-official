@@ -58,3 +58,33 @@ subprocess.run(["git", "add", "."])
 subprocess.run(["git", "commit", "-m", "Auto-sync folders updated"])
 subprocess.run(["git", "push"])
 print("🚀 Website updated successfully from sub-folders!")
+import os
+import json
+
+# Aapke folders ki location
+CODE_DIR = "codes"
+OUTPUT_FILE = "codes.js"
+
+def sync_codes_to_js():
+    premium_scripts = []
+    
+    # codes folder ke andar se saari files uthana
+    if os.path.exists(CODE_DIR):
+        for filename in os.listdir(CODE_DIR):
+            filepath = os.path.join(CODE_DIR, filename)
+            if os.path.isfile(filepath):
+                with open(filepath, 'r', encoding='utf-8') as f:
+                    content = f.read()
+                    premium_scripts.append({
+                        "name": filename,
+                        "content": content,
+                        "ext": filename.split('.')[-1]
+                    })
+    
+    # codes.js file banana taaki website ise padh sake
+    with open(OUTPUT_FILE, 'w', encoding='utf-8') as f:
+        f.write(f"const myPremiumScripts = {json.dumps(premium_scripts)};")
+    print(f"✅ Synced {len(premium_scripts)} scripts to codes.js")
+
+# Ise call karein
+sync_codes_to_js()
