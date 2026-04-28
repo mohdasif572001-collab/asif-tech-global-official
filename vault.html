@@ -1,12 +1,116 @@
-// Magic Download Function (Text ko file banata hai)
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium Vault | Asif Tech Global</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body {
+            background: url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop') no-repeat center center fixed;
+            background-size: cover;
+            color: #fff;
+            font-family: 'Courier New', Courier, monospace;
+            margin: 0; padding: 0;
+        }
+        .overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 10, 20, 0.85); z-index: -1; }
+        .vault-container { display: flex; justify-content: center; align-items: center; min-height: 80vh; flex-direction: column; padding: 20px; }
+        .glass-panel {
+            background: rgba(16, 25, 40, 0.45);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(0, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 40px; width: 95%; max-width: 900px;
+            text-align: center; transition: 0.5s;
+        }
+        .neon-text { color: #0ff; text-shadow: 0 0 10px #0ff; margin-bottom: 20px; letter-spacing: 2px; }
+        .cyber-input { background: rgba(0, 0, 0, 0.5); border: 1px solid #0ff; color: #0ff; padding: 15px; width: 250px; border-radius: 5px; text-align: center; font-size: 16px; letter-spacing: 3px; margin-bottom: 20px; outline: none; }
+        .cyber-btn { background: transparent; border: 2px solid #0ff; color: #0ff; padding: 10px 30px; font-size: 18px; cursor: pointer; border-radius: 5px; font-weight: bold; }
+        .cyber-btn:hover { background: #0ff; color: #000; box-shadow: 0 0 20px #0ff; }
+
+        /* Code Box Design */
+        .code-box { background: #0d1117; border: 1px solid #30363d; border-radius: 10px; margin-top: 25px; text-align: left; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        .code-header { background: #161b22; padding: 10px 15px; border-bottom: 1px solid #30363d; color: #0ff; font-size: 14px; display: flex; justify-content: space-between; }
+        .code-body { padding: 15px; overflow-x: auto; max-height: 400px; }
+        .code-body pre { margin: 0; color: #e6edf3; font-size: 14px; }
+        .code-footer { background: #161b22; padding: 10px 15px; border-top: 1px solid #30363d; text-align: right; }
+        .magic-download-btn { background: #238636; color: white; border: none; padding: 8px 20px; border-radius: 5px; cursor: pointer; font-weight: bold; transition: 0.3s; }
+        .magic-download-btn:hover { background: #2ea043; box-shadow: 0 0 10px #238636; }
+        #vault-content { display: none; }
+        .error-msg { color: #ff003c; display: none; margin-top: 10px; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <div class="overlay"></div>
+    <div id="master-menu-placeholder"></div>
+    <script src="menu.js"></script>
+
+    <div class="vault-container">
+        <div class="glass-panel" id="lock-screen">
+            <i class="fas fa-fingerprint" style="font-size: 50px; color: #0ff; margin-bottom: 15px;"></i>
+            <h2 class="neon-text">RESTRICTED ACCESS</h2>
+            <input type="password" id="passcode" class="cyber-input" placeholder="••••••••" onkeypress="if(event.key === 'Enter') checkPassword()">
+            <br>
+            <button class="cyber-btn" onclick="checkPassword()">AUTHORIZE</button>
+            <p id="error" class="error-msg">ACCESS DENIED!</p>
+        </div>
+
+        <div class="glass-panel" id="vault-content">
+            <i class="fas fa-unlock-alt" style="font-size: 40px; color: #0f0; margin-bottom: 10px;"></i>
+            <h2 style="color: #0f0; text-shadow: 0 0 10px #0f0;">ASIF'S PREMIUM VAULT</h2>
+            <div id="dynamic-code-container"></div>
+        </div>
+    </div>
+
+    <script src="codes.js"></script>
+    <script>
+        // 1. Password Logic
+        function checkPassword() {
+            const pass = document.getElementById('passcode').value;
+            if (pass === "ASIFPRO") {
+                document.getElementById('lock-screen').style.display = "none";
+                document.getElementById('vault-content').style.display = "block";
+                loadCodes(); // Codes load karein
+            } else {
+                document.getElementById('error').style.display = "block";
+                document.getElementById('lock-screen').style.transform = "translateX(-10px)";
+                setTimeout(() => document.getElementById('lock-screen').style.transform = "translateX(0)", 100);
+            }
+        }
+
+        // 2. Dynamic Codes Loading
+        function loadCodes() {
+            const container = document.getElementById('dynamic-code-container');
+            if (typeof myPremiumScripts === 'undefined' || myPremiumScripts.length === 0) {
+                container.innerHTML = "<p style='color: #888;'>No scripts found in 'codes' folder.</p>";
+                return;
+            }
+
+            myPremiumScripts.forEach((script, index) => {
+                const id = `script-${index}`;
+                container.innerHTML += `
+                    <div class="code-box">
+                        <div class="code-header">
+                            <span><i class="fas fa-code"></i> ${script.name}</span>
+                            <span style="text-transform: uppercase;">${script.ext}</span>
+                        </div>
+                        <div class="code-body">
+                            <pre><code id="${id}">${script.content.replace(/</g, "&lt;").replace(/>/g, "&gt;")}</code></pre>
+                        </div>
+                        <div class="code-footer">
+                            <button class="magic-download-btn" onclick="downloadCode('${id}', '${script.name}')">
+                                <i class="fas fa-download"></i> Download ${script.ext} File
+                            </button>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        // 3. Magic Download Logic
         function downloadCode(elementId, fileName) {
-            // Box ke andar se code nikalna
             const codeText = document.getElementById(elementId).innerText;
-            
-            // Text ko ek virtual file (Blob) mein convert karna
             const blob = new Blob([codeText], { type: "text/plain" });
-            
-            // Download trigger karna
             const link = document.createElement("a");
             link.href = URL.createObjectURL(blob);
             link.download = fileName;
@@ -14,3 +118,6 @@
             link.click();
             document.body.removeChild(link);
         }
+    </script>
+</body>
+</html>
