@@ -1,0 +1,16 @@
+// Ye aapka master menu hai. Jab bhi naya button dalna ho, yahan add karein!
+const menuCode = `
+    <nav style="padding: 20px; text-align: center; background: rgba(0,0,0,0.5); border-bottom: 1px solid #0ff;">
+        <span style="color: #fff; font-size: 20px; font-weight: bold; letter-spacing: 2px;">
+            <i class="fas fa-shield-alt"></i> ASIF TECH GLOBAL
+        </span>
+        <br><br>
+        <a href="index.html" style="color: #aaa; text-decoration: none; margin: 0 15px; font-family: 'Courier New', Courier, monospace; font-weight: bold;">HOME</a>
+        <a href="library.html" style="color: #aaa; text-decoration: none; margin: 0 15px; font-family: 'Courier New', Courier, monospace; font-weight: bold;">LIBRARY</a>
+        <a href="live.html" style="color: #aaa; text-decoration: none; margin: 0 15px; font-family: 'Courier New', Courier, monospace; font-weight: bold;">🔴 LIVE NOW</a>
+        <a href="vault.html" style="color: #0ff; font-weight: bold; text-shadow: 0 0 8px #0ff; margin: 0 15px; font-family: 'Courier学习', Courier, monospace;">🔒 VIP VAULT</a>
+    </nav>
+`;
+
+// Ye line us menu ko website par dikhayegi
+document.getElementById("master-menu-placeholder").innerHTML = menuCode;
