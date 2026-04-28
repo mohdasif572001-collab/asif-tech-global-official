@@ -9,12 +9,20 @@ const myContent = {
     images: [],
     codes: [
     {
+        "title": "Net_Repair",
+        "link": "files/codes/Net_Repair.bat"
+    },
+    {
         "title": "Optimize_Pc",
         "link": "files/codes/Optimize_PC.ps1"
     },
     {
         "title": "Ppt Codeing",
         "link": "files/codes/ppt codeing"
+    },
+    {
+        "title": "Web_Check",
+        "link": "files/codes/Web_Check.py"
     }
 ],
     others: [],
