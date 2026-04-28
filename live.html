@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Stream | Asif Tech Global</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .live-container {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            height: 0;
+            overflow: hidden;
+            border-radius: 15px;
+            background: #000;
+        }
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        .live-status {
+            display: inline-block;
+            background: #ff0000;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 50px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            animation: blink 1.5s infinite;
+        }
+        @keyframes blink {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+    </style>
+</head>
+<body class="dark-theme"> <nav>
+        <div class="logo"><strong>ASIF TECH</strong> GLOBAL</div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="library.html">Library</a>
+            <a href="live.html" style="color: #ff0000; border-bottom: 2px solid #ff0000;">🔴 Live Now</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="live-container">
+            <div class="live-status"><i class="fas fa-broadcast-tower"></i> LIVE NOW</div>
+            <h2 style="color: #333; margin-bottom: 20px;">Join the Global Tech Discussion</h2>
+            
+            <div class="video-wrapper">
+                <iframe 
+                    src="https://www.youtube.com/embed/live?channel=UURfvXfU4toossqCIbuXNblA" 
+                    allowfullscreen>
+                </iframe>
+            </div>
+
+            <div style="margin-top: 20px;">
+                <p style="color: #666;">Bhai, agar stream nahi dikh rahi toh ek baar page refresh karein!</p>
+                <a href="https://www.youtube.com/channel/UURfvXfU4toossqCIbuXNblA?sub_confirmation=1" target="_blank" class="whatsapp-btn" style="background: #ff0000; display: inline-block; width: auto; padding: 10px 30px;">
+                    <i class="fab fa-youtube"></i> Subscribe for Alerts
+                </a>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
