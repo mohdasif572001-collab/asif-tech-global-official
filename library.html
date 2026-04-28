@@ -20,13 +20,10 @@
         @keyframes slideDown { from {transform: scale(0.8); opacity: 0;} to {transform: scale(1); opacity: 1;} }
         .close-btn { position: absolute; right: 20px; top: 15px; font-size: 28px; cursor: pointer; color: #aaa; transition: 0.3s; }
         .close-btn:hover { color: #ff0000; }
-        .qr-img { width: 180px; height: 180px; margin: 10px auto; border: 5px solid #f8f9fa; border-radius: 15px; display: block; object-fit: contain; }
+        .qr-img { width: 160px; height: 160px; border-radius: 10px; margin: 10px auto; display: block; border: 5px solid #f8f9fa; }
         
         .whatsapp-btn { background: #25D366; color: white; padding: 12px; display: flex; align-items: center; justify-content: center; gap: 10px; text-decoration: none; border-radius: 12px; font-weight: bold; font-size: 14px; margin-top: 10px; transition: 0.3s; }
         .whatsapp-btn:hover { background: #128C7E; }
-
-        #paypal-button-container { margin: 15px 0; min-height: 150px; }
-        .divider { margin: 15px 0; border-top: 1px solid #eee; padding-top: 10px; font-size: 12px; color: #888; font-weight: bold; }
 
         .dark-theme .modal-content { background: #1e293b; color: #fff; }
     </style>
@@ -40,18 +37,28 @@
         <div class="modal-content">
             <span class="close-btn" onclick="closeModal()">&times;</span>
             <h3 id="modalTitle" style="color: #0033ad; margin-bottom: 5px;">Premium Resource</h3>
-            <p style="color: #666; font-size: 14px;">Total Price: <strong>$<span id="modalPrice">0</span></strong></p>
             
-            <div id="paypal-button-container"></div>
+            <p style="margin-bottom: 10px; font-size: 18px;">
+                Price: <strong style="color: #d32f2f;">₹<span id="modalPriceINR">0</span></strong> 
+                <span style="color: #888; font-size: 14px;">(or $<span id="modalPriceUSD">0</span>)</span>
+            </p>
 
-            <div class="divider">OR PAY VIA UPI (India Only)</div>
-            
-            <img src="files/images/my-qr.jpg" alt="Scan to Pay" class="qr-img" onerror="this.src='https://via.placeholder.com/180?text=Scan+QR+to+Pay'">
+            <div style="background: #f1f5f9; padding: 10px; border-radius: 10px; margin-bottom: 15px; border: 1px dashed #00c853;">
+                <p style="font-size: 11px; color: #475569; margin: 0;">UPI ID (India Only):</p>
+                <strong style="color: #1e293b; font-size: 14px;">9568591635@ybl</strong>
+            </div>
+
+            <img src="files/images/my-qr.jpg" alt="Scan to Pay" class="qr-img" onerror="this.src='https://via.placeholder.com/160?text=Scan+QR+to+Pay'">
+
+            <a id="paypalLink" href="#" target="_blank" 
+               style="background: #003087; color: white; padding: 12px; display: block; border-radius: 10px; text-decoration: none; font-weight: bold; margin-bottom: 15px; font-size: 14px;">
+               <i class="fab fa-paypal"></i> Pay via PayPal ($)
+            </a>
             
             <a id="whatsappLink" href="#" target="_blank" class="whatsapp-btn">
-                <i class="fab fa-whatsapp"></i> WhatsApp Payment Screenshot
+                <i class="fab fa-whatsapp"></i> Send Screenshot to Unlock
             </a>
-            <p style="font-size: 11px; color: #999; margin-top: 8px;">After UPI, send screenshot to get the password.</p>
+            <p style="font-size: 11px; color: #999; margin-top: 10px;">Screenshot milte hi aapko Vault ka access mil jayega.</p>
         </div>
     </div>
 
@@ -76,23 +83,33 @@
         </div>
     </div>
 
-    <script src="https://www.paypal.com/sdk/js?client-id=AVb5Zlx2r4O6qWQnHhIako_ObwZs0oEf3mBQDJ5WvGxc-RAeQtkUght4Ky5w0aMwJm7-22uzAxdvCi2T&currency=USD"></script>
-    <script src="payment.js"></script>
     <script src="videos.js"></script>
-
     <script>
         const MY_WHATSAPP = "7983931678";
+        const PAYPAL_USERNAME = "mohdAsif"; // 👈 Apna PayPal Me username yahan badal lena
 
-        function openPayment(title, price) {
-            document.getElementById('modalTitle').innerText = title;
-            document.getElementById('modalPrice').innerText = price;
-            document.getElementById('whatsappLink').href = `https://wa.me/${MY_WHATSAPP}?text=Hello Asif, I paid for ${title} via UPI. Here is the screenshot.`;
-            document.getElementById('paymentModal').style.display = "block";
+        function openPayment(title, priceUSD) {
+            let priceINR;
             
-            // payment.js se PayPal button load karein
-            if (typeof renderPayPal === "function") {
-                renderPayPal(price, title);
+            // Special Logic: $1 = ₹20
+            if (priceUSD == 1) {
+                priceINR = 20;
+            } else {
+                priceINR = Math.round(priceUSD * 83); // Standard rate for other prices
             }
+
+            document.getElementById('modalTitle').innerText = title;
+            document.getElementById('modalPriceUSD').innerText = priceUSD;
+            document.getElementById('modalPriceINR').innerText = priceINR;
+            
+            // PayPal Direct Link
+            document.getElementById('paypalLink').href = `https://www.paypal.me/${PAYPAL_USERNAME}/${priceUSD}`;
+            
+            // WhatsApp Message Update
+            const msg = encodeURIComponent(`Hi Asif, I want to buy "${title}". I've paid ₹${priceINR} to 9568591635@ybl. Please unlock it.`);
+            document.getElementById('whatsappLink').href = `https://wa.me/${MY_WHATSAPP}?text=${msg}`;
+            
+            document.getElementById('paymentModal').style.display = "block";
         }
 
         function closeModal() {
@@ -139,35 +156,6 @@
                 }
             }
         };
-   
- </script>
- <div id="paymentModal" class="modal">
-    <div class="modal-content">
-        <span class="close-btn" onclick="closeModal()">&times;</span>
-        <h3 id="modalTitle" style="color: #0033ad;">Premium Resource</h3>
-        
-        <p style="margin-bottom: 10px; font-size: 18px;">
-            Price: <strong style="color: #d32f2f;">₹<span id="modalPriceINR">0</span></strong> 
-            <span style="color: #888; font-size: 14px;">(or $<span id="modalPriceUSD">0</span>)</span>
-        </p>
-
-        <div style="background: #f1f5f9; padding: 10px; border-radius: 10px; margin-bottom: 15px; border: 1px dashed #00c853;">
-            <p style="font-size: 12px; color: #475569; margin: 0;">UPI ID (India Only):</p>
-            <strong style="color: #1e293b; font-size: 15px;">9568591635@ybl</strong>
-        </div>
-
-        <img src="files/images/my-qr.jpg" alt="Scan to Pay" class="qr-img" style="width: 160px; height: 160px; border-radius: 10px; margin-bottom: 10px;">
-
-        <a id="paypalLink" href="https://www.paypal.me/YOUR_USERNAME" target="_blank" 
-           style="background: #003087; color: white; padding: 12px; display: block; border-radius: 10px; text-decoration: none; font-weight: bold; margin-bottom: 15px; font-size: 14px;">
-           <i class="fab fa-paypal"></i> Pay via PayPal ($)
-        </a>
-        
-        <a id="whatsappLink" href="#" target="_blank" class="whatsapp-btn" style="background: #25D366; color: white; padding: 12px; display: flex; align-items: center; justify-content: center; gap: 10px; text-decoration: none; border-radius: 10px; font-weight: bold;">
-            <i class="fab fa-whatsapp"></i> Send Screenshot to Unlock
-        </a>
-        <p style="font-size: 11px; color: #999; margin-top: 10px;">Screenshot milte hi aapko Vault ka access mil jayega.</p>
-    </div>
-</div>
+    </script>
 </body>
 </html>
