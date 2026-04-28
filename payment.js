@@ -1,14 +1,19 @@
-// ASIF TECH GLOBAL - PAYPAL INTEGRATION
+// ASIF TECH GLOBAL - PAYPAL LOGIC
 function renderPayPal(price, title) {
-    console.log("Paypal function called for:", title, "Price:", price);
+    console.log("System: Starting PayPal for", title);
     
     const container = document.getElementById('paypal-button-container');
-    if (!container) {
-        console.error("Error: paypal-button-container not found in HTML!");
+    if (!container) return;
+    
+    container.innerHTML = 'Loading PayPal...'; // Loading message
+
+    // Agar PayPal SDK load hone mein time le raha ho
+    if (typeof paypal === 'undefined') {
+        container.innerHTML = '<p style="color:red;">PayPal not loaded. Check Internet.</p>';
         return;
     }
-    
-    container.innerHTML = ''; // Purana button clear karein
+
+    container.innerHTML = ''; // Clear loading message
 
     paypal.Buttons({
         style: {
@@ -30,13 +35,12 @@ function renderPayPal(price, title) {
         },
         onApprove: function(data, actions) {
             return actions.order.capture().then(function(details) {
-                alert('Success! Redirecting to Vault...');
+                alert('Success! Redirecting...');
                 window.location.href = "vault.html"; 
             });
-        },
-        onError: function(err) {
-            console.error("PayPal Execution Error:", err);
-            alert("PayPal load nahi ho pa raha. Check your Client ID.");
         }
-    }).render('#paypal-button-container');
+    }).render('#paypal-button-container').catch(err => {
+        console.error("PayPal Render Error:", err);
+        container.innerHTML = "Error loading buttons.";
+    });
 }
