@@ -16,17 +16,19 @@
         
         /* 💳 Payment Modal Styling */
         .modal { display: none; position: fixed; z-index: 10000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); backdrop-filter: blur(5px); }
-        .modal-content { background: white; margin: 5% auto; padding: 25px; border-radius: 25px; width: 90%; max-width: 400px; text-align: center; position: relative; box-shadow: 0 20px 50px rgba(0,0,0,0.3); animation: slideDown 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+        .modal-content { background: white; margin: 2% auto; padding: 25px; border-radius: 25px; width: 90%; max-width: 420px; text-align: center; position: relative; box-shadow: 0 20px 50px rgba(0,0,0,0.3); animation: slideDown 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
         @keyframes slideDown { from {transform: scale(0.8); opacity: 0;} to {transform: scale(1); opacity: 1;} }
         .close-btn { position: absolute; right: 20px; top: 15px; font-size: 28px; cursor: pointer; color: #aaa; transition: 0.3s; }
         .close-btn:hover { color: #ff0000; }
-        .qr-img { width: 220px; height: 220px; margin: 15px auto; border: 8px solid #f8f9fa; border-radius: 15px; display: block; object-fit: contain; }
-        .pay-icons { display: flex; justify-content: center; gap: 20px; font-size: 30px; margin: 20px 0; color: #555; }
-        .whatsapp-btn { background: #25D366; color: white; padding: 15px; display: flex; align-items: center; justify-content: center; gap: 10px; text-decoration: none; border-radius: 12px; font-weight: bold; font-size: 16px; margin-top: 15px; transition: 0.3s; }
-        .whatsapp-btn:hover { background: #128C7E; transform: translateY(-2px); }
+        .qr-img { width: 180px; height: 180px; margin: 10px auto; border: 5px solid #f8f9fa; border-radius: 15px; display: block; object-fit: contain; }
+        
+        .whatsapp-btn { background: #25D366; color: white; padding: 12px; display: flex; align-items: center; justify-content: center; gap: 10px; text-decoration: none; border-radius: 12px; font-weight: bold; font-size: 14px; margin-top: 10px; transition: 0.3s; }
+        .whatsapp-btn:hover { background: #128C7E; }
+
+        #paypal-button-container { margin: 15px 0; min-height: 150px; }
+        .divider { margin: 15px 0; border-top: 1px solid #eee; padding-top: 10px; font-size: 12px; color: #888; font-weight: bold; }
 
         .dark-theme .modal-content { background: #1e293b; color: #fff; }
-        .dark-theme .modal-content p { color: #cbd5e1 !important; }
     </style>
 </head>
 <body>
@@ -38,21 +40,18 @@
         <div class="modal-content">
             <span class="close-btn" onclick="closeModal()">&times;</span>
             <h3 id="modalTitle" style="color: #0033ad; margin-bottom: 5px;">Premium Resource</h3>
-            <p style="color: #666; font-size: 15px; margin-bottom: 10px;">Pay <strong>₹<span id="modalPrice">0</span></strong> to get access</p>
+            <p style="color: #666; font-size: 14px;">Total Price: <strong>$<span id="modalPrice">0</span></strong></p>
             
-            <img src="files/images/my-qr.jpg" alt="Scan to Pay" class="qr-img" onerror="this.src='https://via.placeholder.com/220?text=Scan+QR+to+Pay'">
+            <div id="paypal-button-container"></div>
+
+            <div class="divider">OR PAY VIA UPI (India Only)</div>
             
-            <div class="pay-icons">
-                <i class="fab fa-google-pay" title="Google Pay" style="color: #4285F4;"></i>
-                <i class="fas fa-mobile-alt" title="PhonePe/BHIM" style="color: #6739B7;"></i>
-                <i class="fab fa-amazon-pay" title="Amazon Pay" style="color: #FF9900;"></i>
-                <i class="fab fa-paypal" title="PayPal" style="color: #003087;"></i>
-            </div>
+            <img src="files/images/my-qr.jpg" alt="Scan to Pay" class="qr-img" onerror="this.src='https://via.placeholder.com/180?text=Scan+QR+to+Pay'">
             
-            <p style="font-size: 13px; color: #888; margin-bottom: 15px;">Send payment screenshot to WhatsApp for the file/link</p>
             <a id="whatsappLink" href="#" target="_blank" class="whatsapp-btn">
-                <i class="fab fa-whatsapp"></i> Send Screenshot
+                <i class="fab fa-whatsapp"></i> WhatsApp Payment Screenshot
             </a>
+            <p style="font-size: 11px; color: #999; margin-top: 8px;">After UPI, send screenshot to get the password.</p>
         </div>
     </div>
 
@@ -69,42 +68,31 @@
                 <button class="filter-btn" onclick="filterSelection('others', this)"><i class="fas fa-file-archive"></i> Others</button>
             </div>
 
-            <div id="sec-codes" class="resource-section" style="margin-bottom: 40px; padding: 20px; border: 1px solid #b2dfdb; border-radius: 15px; background: #f0fbf9;">
-                <h3 style="color: #00796b; margin-top: 0;"><i class="fas fa-code"></i> Source Code & Scripts</h3>
-                <div id="code-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 15px; margin-top: 15px;"></div>
-            </div>
-
-            <div id="sec-pdfs" class="resource-section" style="margin-bottom: 40px; padding: 20px; border: 1px solid #ffcdd2; border-radius: 15px; background: #fffafb;">
-                <h3 style="color: #d32f2f; margin-top: 0;"><i class="fas fa-file-pdf"></i> PDF Documents & Notes</h3>
-                <div id="pdf-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 15px; margin-top: 15px;"></div>
-            </div>
-
-            <div id="sec-ppts" class="resource-section" style="margin-bottom: 40px; padding: 20px; border: 1px solid #ffe0b2; border-radius: 15px; background: #fffcf8;">
-                <h3 style="color: #f57c00; margin-top: 0;"><i class="fas fa-file-powerpoint"></i> Presentations (PPT)</h3>
-                <div id="ppt-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 15px; margin-top: 15px;"></div>
-            </div>
-
-            <div id="sec-images" class="resource-section" style="margin-bottom: 40px; padding: 20px; border: 1px solid #bbdefb; border-radius: 15px; background: #f8fbff;">
-                <h3 style="color: #1976d2; margin-top: 0;"><i class="fas fa-images"></i> Image Gallery</h3>
-                <div id="image-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 15px; margin-top: 15px;"></div>
-            </div>
-
-            <div id="sec-others" class="resource-section" style="padding: 20px; border: 1px solid #cfd8dc; border-radius: 15px; background: #fbfcfc;">
-                <h3 style="color: #455a64; margin-top: 0;"><i class="fas fa-file-archive"></i> Other Files</h3>
-                <div id="other-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 15px; margin-top: 15px;"></div>
-            </div>
+            <div id="sec-codes" class="resource-section"><div id="code-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 15px;"></div></div>
+            <div id="sec-pdfs" class="resource-section"><div id="pdf-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 15px;"></div></div>
+            <div id="sec-ppts" class="resource-section"><div id="ppt-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 15px;"></div></div>
+            <div id="sec-images" class="resource-section"><div id="image-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 15px;"></div></div>
+            <div id="sec-others" class="resource-section"><div id="other-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 15px;"></div></div>
         </div>
     </div>
 
+    <script src="https://www.paypal.com/sdk/js?client-id=AVb5Zlx2r4O6qWQnHhIako_ObwZs0oEf3mBQDJ5WvGxc-RAeQtkUght4Ky5w0aMwJm7-22uzAxdvCi2T&currency=USD"></script>
+    <script src="payment.js"></script>
     <script src="videos.js"></script>
+
     <script>
-        const MY_WHATSAPP = "7983931678"; // 👈 APNA WHATSAPP NUMBER YAHAN DAALEIN (With 91)
+        const MY_WHATSAPP = "7983931678";
 
         function openPayment(title, price) {
             document.getElementById('modalTitle').innerText = title;
             document.getElementById('modalPrice').innerText = price;
-            document.getElementById('whatsappLink').href = `https://wa.me/${MY_WHATSAPP}?text=Hello Asif, I want to purchase ${title}. I have paid ₹${price}. Please provide the file.`;
+            document.getElementById('whatsappLink').href = `https://wa.me/${MY_WHATSAPP}?text=Hello Asif, I paid for ${title} via UPI. Here is the screenshot.`;
             document.getElementById('paymentModal').style.display = "block";
+            
+            // payment.js se PayPal button load karein
+            if (typeof renderPayPal === "function") {
+                renderPayPal(price, title);
+            }
         }
 
         function closeModal() {
@@ -116,7 +104,7 @@
             for (var i = 0; i < buttons.length; i++) { buttons[i].classList.remove("active"); }
             btnElement.classList.add("active");
             var sections = ['codes', 'pdfs', 'ppts', 'images', 'others'];
-            sections.forEach(function(sec) {
+            sections.forEach(sec => {
                 var element = document.getElementById("sec-" + sec);
                 if (element) element.style.display = (category === 'all' || category === sec) ? "block" : "none";
             });
@@ -137,14 +125,14 @@
                     if (grid && myContent[type]) {
                         myContent[type].forEach(item => {
                             const isPaid = item.isPaid === true;
-                            const btnLabel = isPaid ? `<i class="fas fa-lock"></i> Buy ₹${item.price}` : grids[type].btn;
+                            const btnLabel = isPaid ? `<i class="fas fa-lock"></i> Unlock $${item.price}` : grids[type].btn;
                             const action = isPaid ? `onclick="openPayment('${item.title}', '${item.price}')"` : `href="${item.link}" target="_blank"`;
                             
                             grid.innerHTML += `
-                                <div style="background: white; border: 1px solid #eee; padding: 15px; border-radius: 10px; text-align: center; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
+                                <div style="background: white; border: 1px solid #eee; padding: 15px; border-radius: 10px; text-align: center; box-shadow: 0 4px 6px rgba(0,0,0,0.05); transition: 0.3s;">
                                     <i class="fas ${grids[type].icon}" style="font-size: 35px; color: ${grids[type].color}; margin-bottom: 15px;"></i>
                                     <h4 style="margin: 5px 0 15px 0; color: #333; font-size: 14px;">${item.title}</h4>
-                                    <a ${action} style="cursor:pointer; display: inline-block; background: ${isPaid ? '#f57c00' : grids[type].color}; color: white; padding: 6px 15px; border-radius: 5px; text-decoration: none; font-size: 12px; font-weight: bold;">${btnLabel}</a>
+                                    <a ${action} style="cursor:pointer; display: inline-block; background: ${isPaid ? '#003087' : grids[type].color}; color: white; padding: 6px 15px; border-radius: 5px; text-decoration: none; font-size: 12px; font-weight: bold;">${btnLabel}</a>
                                 </div>`;
                         });
                     }
