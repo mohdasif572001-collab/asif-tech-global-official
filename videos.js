@@ -9,6 +9,10 @@ const myContent = {
     images: [],
     codes: [
     {
+        "title": "Optimize_Pc",
+        "link": "files/codes/Optimize_PC.ps1"
+    },
+    {
         "title": "Ppt Codeing",
         "link": "files/codes/ppt codeing"
     }
