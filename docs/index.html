@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ASIF TECH GLOBAL | World's Leading Digital Solutions</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;800;900&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <meta name="google-adsense-account" content="ca-pub-2165852461534798">
+
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2165852461534798"
+     crossorigin="anonymous"></script>
+
+    <style>
+        /* --- 1. CORE VARIABLES --- */
+        :root {
+            --gold: #FFD700;
+            --gold-dark: #B8860B;
+            --black: #000000;
+            --dark-gray: #111111;
+            --light-gray: #f4f4f4;
+            --text-light: #e0e0e0;
+            --text-muted: #a0a0a0;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+        
+        body { 
+            font-family: 'Montserrat', sans-serif; 
+            background-color: var(--black); 
+            color: var(--text-light); 
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        a { text-decoration: none; transition: 0.3s; }
+        ul { list-style: none; }
+
+        /* --- 2. FLOATING WHATSAPP BUTTON --- */
+        .whatsapp-float {
+            position: fixed; width: 60px; height: 60px; bottom: 40px; right: 40px;
+            background-color: #25d366; color: #FFF; border-radius: 50px; text-align: center; font-size: 30px;
+            box-shadow: 2px 2px 3px #999; z-index: 10000; display: flex; align-items: center; justify-content: center;
+            animation: pulse 2s infinite;
+        }
+        .whatsapp-float:hover { background-color: #128C7E; transform: scale(1.1); }
+        @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); } 70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); } 100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); } }
+
+        /* --- 3. HERO SECTION (VIDEO) --- */
+        .hero {
+            position: relative; height: 100vh; width: 100%; display: flex; align-items: center; justify-content: center;
+            text-align: center; overflow: hidden;
+        }
+        .hero video {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: -1; opacity: 0.4;
+        }
+        .hero-content { z-index: 2; padding: 20px; animation: fadeInUp 1.5s ease; }
+        .hero h1 { 
+            font-size: 70px; font-weight: 900; margin-bottom: 20px; line-height: 1.1; text-transform: uppercase;
+            background: linear-gradient(to bottom, #fff, #999); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+        .hero p { font-size: 22px; color: var(--gold); margin-bottom: 40px; font-weight: 600; letter-spacing: 2px; }
+        
+        .btn-gold {
+            background: linear-gradient(45deg, var(--gold), var(--gold-dark)); color: black; padding: 15px 40px;
+            font-weight: 800; text-transform: uppercase; letter-spacing: 1px; border-radius: 50px; display: inline-block;
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.4); border: none; cursor: pointer;
+        }
+        .btn-gold:hover { transform: translateY(-5px); box-shadow: 0 0 40px rgba(255, 215, 0, 0.6); }
+
+        /* --- 4. NAVIGATION --- */
+        .navbar {
+            display: flex; justify-content: space-between; align-items: center; padding: 20px 50px;
+            position: fixed; top: 0; width: 100%; z-index: 999; background: rgba(0,0,0,0.9); border-bottom: 1px solid #333;
+        }
+        .logo { font-family: 'Playfair Display', serif; font-size: 28px; color: white; font-weight: 700; }
+        .logo span { color: var(--gold); }
+        .nav-links a { color: #fff; margin-left: 30px; font-size: 13px; font-weight: 600; text-transform: uppercase; }
+        .nav-links a:hover { color: var(--gold); }
+
+        /* --- 5. SECTIONS GENERAL --- */
+        .section { padding: 100px 8%; border-bottom: 1px solid #222; }
+        .bg-dark { background: var(--dark-gray); }
+        .section-title { text-align: center; margin-bottom: 60px; }
+        .section-title h2 { font-size: 45px; margin-bottom: 10px; color: white; }
+        .section-title span { color: var(--gold); font-weight: bold; letter-spacing: 3px; text-transform: uppercase; }
+        
+        /* --- 6. GRID LAYOUTS --- */
+        .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 40px; }
+        .grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; }
+        
+        /* --- 7. CARDS --- */
+        .service-card {
+            background: #050505; padding: 40px; border: 1px solid #333; transition: 0.4s; position: relative;
+        }
+        .service-card:hover { border-color: var(--gold); transform: translateY(-10px); }
+        .service-card i { font-size: 50px; color: var(--gold); margin-bottom: 20px; }
+        .service-card h3 { font-size: 24px; margin-bottom: 15px; color: white; }
+        .service-card p { color: var(--text-muted); font-size: 15px; margin-bottom: 20px; }
+
+        /* --- 8. TIMELINE PROCESS --- */
+        .process-step { text-align: center; position: relative; padding: 20px; }
+        .step-num { 
+            background: var(--gold); color: black; width: 60px; height: 60px; border-radius: 50%; 
+            font-size: 24px; font-weight: bold; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px;
+        }
+        
+        /* --- 9. PRICING --- */
+        .pricing-card {
+            background: #1a1a1a; padding: 50px 30px; text-align: center; border-radius: 10px; border: 1px solid #333;
+        }
+        .pricing-card.highlight { border: 2px solid var(--gold); transform: scale(1.05); background: #000; }
+        .price { font-size: 50px; font-weight: bold; color: white; margin: 20px 0; }
+        .price span { font-size: 18px; color: #666; }
+        .features-list li { margin: 15px 0; color: #ccc; border-bottom: 1px solid #333; padding-bottom: 10px; }
+
+        /* --- 10. STATS --- */
+        .stats-section { background: url('https://source.unsplash.com/1600x600/?technology,server') fixed; position: relative; text-align: center; }
+        .stats-overlay { background: rgba(0,0,0,0.85); width: 100%; height: 100%; padding: 100px 0; }
+        .stat-number { font-size: 60px; font-weight: 900; color: var(--gold); }
+        
+        /* --- 11. FOOTER --- */
+        footer { background: #000; padding: 80px 8% 20px; border-top: 5px solid var(--gold); }
+        .footer-cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 50px; margin-bottom: 50px; }
+        .footer-cols h3 { color: white; margin-bottom: 25px; font-size: 18px; }
+        .footer-cols ul li { margin-bottom: 12px; }
+        .footer-cols a { color: #888; }
+        .footer-cols a:hover { color: var(--gold); }
+
+        /* ANIMATIONS */
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(50px); } to { opacity: 1; transform: translateY(0); } }
+        
+        /* MOBILE */
+        @media(max-width: 768px) {
+            .hero h1 { font-size: 40px; }
+            .navbar { flex-direction: column; gap: 20px; padding: 15px; position: relative; }
+            .grid-3, .grid-4 { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <a href="https://whatsapp.com/channel/0029Vb73fjEFnSz6IcUhpU07" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <nav class="navbar">
+        <div class="logo">ASIF TECH <span>GLOBAL</span></div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="platform.html">Platform</a>
+            <a href="dashboard.html">Dashboard</a>
+            <a href="jobs.html">Job Alerts</a>
+            <a href="creative.html">Creative Studio</a>
+            <a href="portfolio.html">Portfolio</a>
+            <a href="contact.html">Contact</a>
+        </div>
+    </nav>
+
+    <header class="hero">
+        
+    <video autoplay muted loop playsinline style="position: absolute; right: 0; bottom: 0; min-width: 100%; min-height: 100%; z-index: -1;">
+    <source src="media/main.mp4" type="video/mp4">
+</video>
+
+<div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: -1;"></div>
+
+        <div class="hero-content">
+            <p>EST. 2026 • INDIA'S #1 TECH FIRM</p>
+            <h1>Building The <br> Digital Future</h1>
+            
+            <div style="margin-top: 30px;">
+                <a href="dashboard.html" class="btn-gold">Access Dashboard</a>
+                <a href="jobs.html" style="margin-left:20px; border:2px solid white; padding:15px 40px; border-radius:50px; font-weight:bold; color:white;">View Jobs</a>
+            </div>
+        </div>
+
+    </header>
+
+    <section class="section bg-dark">
+        <div class="section-title">
+            <span>Our Vision</span>
+            <h2>Why We Exist</h2>
+            <p style="max-width: 700px; margin: 0 auto; color: #aaa;">We bridge the gap between complex technology and everyday users. From automating government job alerts to creating seamless e-commerce experiences.</p>
+        </div>
+        <div class="grid-4">
+            <div style="text-align:center;">
+                <i class="fas fa-bolt" style="font-size:40px; color:var(--gold); margin-bottom:15px;"></i>
+                <h3>Speed</h3>
+                <p style="color:#777;">Fastest updates in India.</p>
+            </div>
+            <div style="text-align:center;">
+                <i class="fas fa-shield-alt" style="font-size:40px; color:var(--gold); margin-bottom:15px;"></i>
+                <h3>Security</h3>
+                <p style="color:#777;">Enterprise-grade protection.</p>
+            </div>
+            <div style="text-align:center;">
+                <i class="fas fa-globe" style="font-size:40px; color:var(--gold); margin-bottom:15px;"></i>
+                <h3>Scale</h3>
+                <p style="color:#777;">Serving millions daily.</p>
+            </div>
+            <div style="text-align:center;">
+                <i class="fas fa-code" style="font-size:40px; color:var(--gold); margin-bottom:15px;"></i>
+                <h3>Innovation</h3>
+                <p style="color:#777;">Always one step ahead.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="section-title">
+            <span>What We Do</span>
+            <h2>Our Core Ecosystem</h2>
+        </div>
+        <div class="grid-3">
+            <div class="service-card">
+                <i class="fas fa-briefcase"></i>
+                <h3>Sarkari Job Station</h3>
+                <p>Advanced scraping algorithms that fetch Government Job notifications 24 hours before competitors. Real-time Admit Card and Result updates.</p>
+                <a href="jobs.html" style="color:var(--gold); font-weight:bold;">Visit Portal →</a>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-shopping-cart"></i>
+                <h3>Affiliate Mega Store</h3>
+                <p>An API-driven e-commerce engine hosting 100,000+ products. Features dynamic pricing, auto-rotation, and smart category filtering.</p>
+                <a href="jobs.html#store" style="color:var(--gold); font-weight:bold;">Start Shopping →</a>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-chart-pie"></i>
+                <h3>Business Intelligence</h3>
+                <p>Proprietary Admin Dashboards that provide deep insights into user behavior, traffic sources, and revenue streams.</p>
+                <a href="dashboard.html" style="color:var(--gold); font-weight:bold;">Login Panel →</a>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-laptop-code"></i>
+                <h3>Custom Web Dev</h3>
+                <p>We build high-performance websites for startups and enterprises using HTML5, Python, React, and Node.js.</p>
+                <a href="portfolio.html" style="color:var(--gold); font-weight:bold;">View Portfolio →</a>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-cloud"></i>
+                <h3>Cloud Architecture</h3>
+                <p>Scalable hosting solutions on AWS and Google Cloud ensuring 99.99% uptime for your business applications.</p>
+                <a href="architecture.html" style="color:var(--gold); font-weight:bold;">Learn More →</a>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-bullhorn"></i>
+                <h3>Digital Growth</h3>
+                <p>Data-driven SEO and Affiliate Marketing strategies to maximize ROI and organic traffic growth.</p>
+                <a href="#" style="color:var(--gold); font-weight:bold;">Get Strategy →</a>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-wand-magic-sparkles"></i>
+                <h3>Creative Studio</h3>
+                <p>Free image resizing and Adobe Express shortcuts for posters, profile photos, PDFs, and social content.</p>
+                <a href="creative.html" style="color:var(--gold); font-weight:bold;">Open Studio →</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="stats-section">
+        <div class="stats-overlay">
+            <div class="grid-4" style="max-width:1200px; margin:0 auto;">
+                <div>
+                    <div class="stat-number">50+</div>
+                    <p style="color:white; letter-spacing:1px;">Global Clients</p>
+                </div>
+                <div>
+                    <div class="stat-number">1.2M</div>
+                    <p style="color:white; letter-spacing:1px;">Lines of Code</p>
+                </div>
+                <div>
+                    <div class="stat-number">150K</div>
+                    <p style="color:white; letter-spacing:1px;">Active Users</p>
+                </div>
+                <div>
+                    <div class="stat-number">24/7</div>
+                    <p style="color:white; letter-spacing:1px;">Support Team</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section bg-dark">
+        <div class="section-title">
+            <span>How We Work</span>
+            <h2>The Process</h2>
+        </div>
+        <div class="grid-4">
+            <div class="process-step">
+                <div class="step-num">1</div>
+                <h3>Strategy</h3>
+                <p style="color:#777;">We analyze your business needs and market gaps.</p>
+            </div>
+            <div class="process-step">
+                <div class="step-num">2</div>
+                <h3>Design</h3>
+                <p style="color:#777;">Creating intuitive UIs and robust architectures.</p>
+            </div>
+            <div class="process-step">
+                <div class="step-num">3</div>
+                <h3>Develop</h3>
+                <p style="color:#777;">Coding with clean, scalable, and secure practices.</p>
+            </div>
+            <div class="process-step">
+                <div class="step-num">4</div>
+                <h3>Deploy</h3>
+                <p style="color:#777;">Launching to the cloud with continuous monitoring.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="section-title">
+            <span>Invest In Growth</span>
+            <h2>Pricing Plans</h2>
+        </div>
+        <div class="grid-3">
+            <div class="pricing-card">
+                <h3>Starter</h3>
+                <div class="price">₹15k <span>/project</span></div>
+                <ul class="features-list">
+                    <li>Basic Website</li>
+                    <li>SEO Setup</li>
+                    <li>1 Month Support</li>
+                </ul>
+                <a href="#" class="btn-gold" style="font-size:12px; padding:10px 30px;">Choose Plan</a>
+            </div>
+            <div class="pricing-card highlight">
+                <div style="background:var(--gold); color:black; display:inline-block; padding:5px 10px; font-weight:bold; margin-bottom:10px; border-radius:5px;">BEST VALUE</div>
+                <h3>Business</h3>
+                <div class="price">₹45k <span>/project</span></div>
+                <ul class="features-list">
+                    <li>Dynamic Web App</li>
+                    <li>Admin Dashboard</li>
+                    <li>Payment Gateway</li>
+                    <li>6 Months Support</li>
+                </ul>
+                <a href="#" class="btn-gold">Choose Plan</a>
+            </div>
+            <div class="pricing-card">
+                <h3>Enterprise</h3>
+                <div class="price">₹1L+ <span>/project</span></div>
+                <ul class="features-list">
+                    <li>Full Scale Solution</li>
+                    <li>Custom AI Integration</li>
+                    <li>Cloud Architecture</li>
+                    <li>24/7 Priority Support</li>
+                </ul>
+                <a href="#" class="btn-gold" style="font-size:12px; padding:10px 30px;">Contact Us</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="section bg-dark">
+        <div class="section-title">
+            <h2>Frequently Asked Questions</h2>
+        </div>
+        <div style="max-width:800px; margin:0 auto;">
+            <div style="border-bottom:1px solid #333; padding:20px 0;">
+                <h3 style="color:white; cursor:pointer;">How do I start a project?</h3>
+                <p style="color:#888; margin-top:10px;">Simply click the WhatsApp button or fill out the contact form. Our team will get back to you within 2 hours.</p>
+            </div>
+            <div style="border-bottom:1px solid #333; padding:20px 0;">
+                <h3 style="color:white; cursor:pointer;">Do you provide Hosting?</h3>
+                <p style="color:#888; margin-top:10px;">Yes, we offer managed cloud hosting on AWS and Google Cloud for all our clients.</p>
+            </div>
+            <div style="border-bottom:1px solid #333; padding:20px 0;">
+                <h3 style="color:white; cursor:pointer;">Is the Job Portal data accurate?</h3>
+                <p style="color:#888; margin-top:10px;">Absolutely. We source data directly from official government notifications using automated scripts.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-cols">
+            <div>
+                <div class="logo" style="margin-bottom:20px;">ASIF TECH <span>GLOBAL</span></div>
+                <p style="color:#888; font-size:14px;">Asif Tech Global is India's premier technology consultancy. We transform businesses through digital innovation.</p>
+            </div>
+            <div>
+                <h3>Company</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="portfolio.html">Careers</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3>Services</h3>
+                <ul>
+                    <li><a href="jobs.html">Job Alerts</a></li>
+                    <li><a href="jobs.html#store">E-Commerce</a></li>
+                    <li><a href="dashboard.html">Analytics</a></li>
+                    <li><a href="architecture.html">Cloud Hosting</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3>Legal</h3>
+                <ul>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                    <li><a href="#">Security</a></li>
+                </ul>
+            </div>
+        </div>
+        <div style="text-align:center; border-top:1px solid #333; padding-top:20px; color:#666; font-size:12px;">
+            &copy; 2026 Asif Tech Global Inc. All Rights Reserved. Built with in India.
+        </div>
+    </footer>
+<script src="ads.js"></script>
+<script src="social-links.js"></script>
+</body>
+</html>
